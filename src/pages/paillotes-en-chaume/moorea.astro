@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import Img from '../../components/Img.astro';
-import Brief from '../../components/Brief.astro';
 import { u, pdf } from '../../lib/url';
 const path = '/paillotes-en-chaume/moorea/';
 const crumbs = [{ name: 'Paillotes en chaume', path: '/paillotes-en-chaume/' }, { name: 'Moorea', path }];
@@ -15,9 +14,7 @@ const specs: [string, string][] = [
 ];
 ---
 <Base title="Paillote en chaume Moorea Ø 2,80 m et chaume de rechange | SEREPI" description="Paillote en chaume Moorea : Ø 2,80 m, 5 rangées de tuiles, structure aluminium. Bientôt de nouveau proposée ; tuiles de rechange disponibles dès maintenant." path={path} crumbs={crumbs} image="/images/paillote-moorea-jardin-1000.webp">
-  <PageHead crumbs={crumbs} kicker="Ø 2,80 m · bientôt" title="Paillote en chaume Moorea" lead="Plus grande que la Bora, la Moorea offre davantage d’ombre pour un salon de jardin ou une terrasse de restaurant. Elle n’est pas encore de nouveau disponible en paillote complète ; en attendant, nous fournissons les tuiles pour renouveler le chaume d’une Moorea existante.">
-    <Brief items={['Ø 2,80 m, 5 rangées de tuiles', 'Structure aluminium anodisé en 3 parties', 'Paillote complète : bientôt [À VALIDER : date]', 'Tuiles et cône de rechange disponibles en ligne']} />
-  </PageHead>
+  <PageHead crumbs={crumbs} title="Paillote en chaume Moorea" lead="Plus grande que la Bora, la Moorea offre davantage d’ombre pour un salon de jardin ou une terrasse de restaurant. Elle n’est pas encore de nouveau disponible en paillote complète ; en attendant, nous fournissons les tuiles pour renouveler le chaume d’une Moorea existante." />
   <section class="sec tight"><div class="wrap two top">
     <figure class="figure"><Img name="paillote-moorea-jardin" alt="Paillote en chaume Moorea dans un jardin, face aux collines" eager sizes="(max-width:900px) 100vw, 45vw" /><figcaption>Moorea dans un jardin · photo SEREPI <span class="todo">[À VALIDER : lieu]</span></figcaption></figure>
     <div>

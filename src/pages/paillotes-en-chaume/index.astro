@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import Img from '../../components/Img.astro';
-import Brief from '../../components/Brief.astro';
 import Faq from '../../components/Faq.astro';
 import { FAQ_PAILLOTE, FAQ_COMMANDE } from '../../data/faq';
 import { faqLd, itemListLd } from '../../lib/seo';
@@ -11,25 +10,18 @@ const path = '/paillotes-en-chaume/';
 const faq = [FAQ_COMMANDE[0], ...FAQ_PAILLOTE];
 ---
 <Base title="Paillotes en chaume à monter soi-même : Bora, Moorea | SEREPI" description="Paillotes en chaume naturel à monter et démonter soi-même : Bora Ø 2 m sur demande, Moorea Ø 2,80 m bientôt. Tuiles de rechange pour tous les modèles." path={path} pageType="CollectionPage" crumbs={[{ name: 'Paillotes en chaume', path }]} ld={[itemListLd(path, [{ name: 'Paillote Bora', path: '/paillotes-en-chaume/bora/' }, { name: 'Paillote Moorea', path: '/paillotes-en-chaume/moorea/' }]), faqLd(faq)]}>
-  <PageHead crumbs={[{ name: 'Paillotes en chaume', path }]} kicker="Paillotes en chaume" title="Paillotes en chaume à monter soi-même" lead="Un parasol en chaume naturel, simple à monter et à démonter, pour une terrasse, un bord de piscine, un jardin ou un emplacement de camping. La paillote complète se commande sur demande : nous établissons un devis et un délai.">
-    <Brief items={[
-      'Bora, Ø 2,00 m : disponible sur demande, prix et délai sur devis',
-      'Moorea, Ø 2,80 m : bientôt de nouveau proposée',
-      'Chaume naturel en tuiles de 5 cm, 8 à 12 ans selon le climat',
-      'Renouvellement du chaume possible pour tous les modèles, toutes marques',
-    ]} />
-  </PageHead>
+  <PageHead crumbs={[{ name: 'Paillotes en chaume', path }]} title="Paillotes en chaume à monter soi-même" lead="Un parasol en chaume naturel, simple à monter et à démonter, pour une terrasse, un bord de piscine, un jardin ou un emplacement de camping. La paillote complète se commande sur demande : nous établissons un devis et un délai." />
   <section class="sec tight"><div class="wrap grid2">
     <a class="card link" href={u('/paillotes-en-chaume/bora/')}>
       <Img name="paillote-bora-piscine" alt="Paillote en chaume Bora au bord d’une piscine" sizes="(max-width:900px) 100vw, 45vw" />
-      <span class="sc">Ø 2,00 m · 3 rangées · sur demande</span>
+      <p class="meta">Ø 2,00 m · 3 rangées de tuiles · sur devis</p>
       <h2 class="t" style="font-size:24px;margin:0">Bora</h2>
       <p>Le parasol en chaume le plus compact : structure acier d’un seul montant, mât en pin traité autoclave.</p>
       <span class="arrow">Voir la Bora</span>
     </a>
     <a class="card link" href={u('/paillotes-en-chaume/moorea/')}>
       <Img name="paillote-moorea-jardin" alt="Paillote en chaume Moorea dans un jardin, face aux collines" sizes="(max-width:900px) 100vw, 45vw" />
-      <span class="sc">Ø 2,80 m · 5 rangées · bientôt</span>
+      <p class="meta">Ø 2,80 m · 5 rangées de tuiles · bientôt</p>
       <h2 class="t" style="font-size:24px;margin:0">Moorea</h2>
       <p>Plus d’ombre pour un salon de jardin ou une terrasse de restaurant. Tuiles de rechange disponibles dès maintenant.</p>
       <span class="arrow">Voir la Moorea</span>
@@ -37,14 +29,12 @@ const faq = [FAQ_COMMANDE[0], ...FAQ_PAILLOTE];
   </div></section>
   <section class="sec creme"><div class="wrap two">
     <div>
-      <span class="sc">Professionnels</span>
-      <h2 class="t">À partir de 4 paillotes, un devis dédié</h2>
+            <h2 class="t">À partir de 4 paillotes, un devis dédié</h2>
       <p>Campings, plages, parcs de loisirs, résidences hôtelières, golfs : prix hors taxes, tarif et délai établis pour votre volume.</p>
       <div class="ctas" style="margin-top:22px"><a class="btn solid" href={u('/devis/')}>Devis en volume</a><a class="arrow" href={u('/professionnels/')}>Espace professionnels</a></div>
     </div>
     <div>
-      <span class="sc">Déjà équipé ?</span>
-      <h2 class="t">Renouvelez seulement le chaume</h2>
+            <h2 class="t">Renouvelez seulement le chaume</h2>
       <p>La structure dure, seule la couverture se change : tuiles, cônes de faîtage et tuiles d’angle pour tous les modèles, expédiés sous 8 jours.</p>
       <div class="ctas" style="margin-top:22px"><a class="btn line" href={u('/renouvellement-chaume/')}>Renouveler mon chaume</a><a class="arrow" href={u('/notices-de-montage/')}>Notices de montage</a></div>
     </div>

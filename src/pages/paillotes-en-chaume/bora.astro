@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import Img from '../../components/Img.astro';
-import Brief from '../../components/Brief.astro';
 import Faq from '../../components/Faq.astro';
 import { FAQ_PAILLOTE, FAQ_CHAUME } from '../../data/faq';
 import { faqLd, abs, imgAbs } from '../../lib/seo';
@@ -28,9 +27,7 @@ const product = {
 };
 ---
 <Base title="Paillote en chaume Bora Ø 2 m à monter soi-même | SEREPI" description="Paillote en chaume Bora : Ø 2 m, 3 rangées de tuiles de roseau, structure acier et mât en pin traité. À monter soi-même, prix et délai sur devis." path={path} pageType="ItemPage" crumbs={crumbs} image="/images/paillote-bora-piscine-1000.webp" ld={[product, faqLd(faq)]}>
-  <PageHead crumbs={crumbs} kicker="Paillote complète · sur demande" title="Paillote en chaume Bora" lead="La Bora est le parasol en chaume le plus compact de la gamme SEREPI : 2 mètres de diamètre, pour une terrasse, un bord de piscine ou un emplacement de camping. Elle se monte et se démonte sans professionnel.">
-    <Brief items={['Ø 2,00 m, 3 rangées de tuiles, 8 tuiles et 1 cône', 'Structure acier, mât en pin Ø 100 mm traité autoclave classe 4', 'Prix et délai sur devis, livraison sur palette filmée', 'Chaume remplaçable : tuiles de rechange en ligne']} />
-  </PageHead>
+  <PageHead crumbs={crumbs} title="Paillote en chaume Bora" lead="La Bora est le parasol en chaume le plus compact de la gamme SEREPI : 2 mètres de diamètre, pour une terrasse, un bord de piscine ou un emplacement de camping. Elle se monte et se démonte sans professionnel." />
   <section class="sec tight"><div class="wrap two top">
     <figure class="figure"><Img name="paillote-bora-piscine" alt="Paillote en chaume Bora neuve sur mât en bois, au bord d’une piscine" eager sizes="(max-width:900px) 100vw, 45vw" /><figcaption>Bora au bord d’une piscine · photo SEREPI</figcaption></figure>
     <div>
@@ -42,8 +39,7 @@ const product = {
   </div></section>
   <section class="sec creme"><div class="wrap two">
     <div>
-      <span class="sc">Déjà une Bora ?</span>
-      <h2 class="t">Renouveler le chaume d’une Bora</h2>
+            <h2 class="t">Renouveler le chaume d’une Bora</h2>
       <p>Une Bora se recouvre avec 8 tuiles de chaume standard et 1 cône de faîtage. La structure reste en place : il suffit de retirer les anciennes tuiles et de poser les neuves, rangée par rangée.</p>
       <div class="ctas" style="margin-top:22px"><a class="btn gold" href={u('/renouvellement-chaume/')}>Commander le chaume d’une Bora</a></div>
     </div>
