@@ -146,7 +146,7 @@ export const MODELS = [
   { id: 'acapulco', name: 'Acapulco', diam: '3,80 m', rows: 6, tiles: null as number | null, cones: 1, available: false, slug: '' },
 ] as const;
 
-export const TILES_PER_M2 = 4; // [À VALIDER : règle] — le site actuel indique « boîte de 6 ≈ 1,5 m² »
+export const TILES_PER_M2 = 4; // [À VALIDER : règle] - le site actuel indique « boîte de 6 ≈ 1,5 m² »
 
 export const unitPrice = (p: Product, qty: number) => (p.tier && qty >= p.tier.min ? p.tier.unitHT : p.unitHT ?? 0);
 export const ttc = (ht: number) => Math.round(ht * (1 + TVA) * 100) / 100;
