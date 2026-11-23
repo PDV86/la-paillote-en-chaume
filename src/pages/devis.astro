@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { SITE } from '../data/site';
+const path = '/devis/';
+---
+<Base title="Demande de devis : paillote en chaume ou chaume | SEREPI" description="Demandez un devis gratuit pour une paillote Bora, le renouvellement du chaume de votre paillote ou un équipement professionnel de 4 paillotes et plus." path={path} pageType="ContactPage" crumbs={[{ name: 'Demande de devis', path }]}>
+  <PageHead crumbs={[{ name: 'Demande de devis', path }]} kicker="Devis gratuit" title="Demande de devis" lead="Paillote Bora, renouvellement du chaume, équipement d’un camping ou d’une plage : décrivez votre projet, nous vous répondons avec un prix et un délai." />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap two top">
+    <QuoteForm />
+    <aside class="card" style="position:sticky;top:120px">
+      <span class="sc">Plus rapide</span>
+      <p>Les tuiles, cônes et tuiles d’angle se commandent directement en ligne, sans devis.</p>
+      <p>Par téléphone : <a href={`tel:${SITE.telIntl}`}>{SITE.tel}</a></p>
+    </aside>
+  </div></section>
+</Base>

@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { SITE } from '../data/site';
+import { rich } from '../lib/text';
+const path = '/mentions-legales/';
+const L = SITE.legal;
+---
+<Base title="Mentions légales | SEREPI – La paillote en chaume" description="Mentions légales du site la-paillote-en-chaume.com : éditeur SEREPI, directeur de la publication, hébergeur, propriété intellectuelle et crédits photos." path={path} crumbs={[{ name: 'Mentions légales', path }]}>
+  <PageHead crumbs={[{ name: 'Mentions légales', path }]} title="Mentions légales" />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap narrow prose">
+    <h2 class="t">Éditeur du site</h2>
+    <p>SEREPI, <span set:html={rich(L.form)} /><br />Siège social : <span set:html={rich(L.address)} /><br />SIREN : <span set:html={rich(L.siren)} /> · RCS : <span set:html={rich(L.rcs)} /><br />TVA intracommunautaire : <span set:html={rich(L.tvaNumber)} /><br />Téléphone : {SITE.tel}</p>
+    <h2 class="t">Directeur de la publication</h2>
+    <p set:html={rich(L.director)} />
+    <h2 class="t">Hébergement</h2>
+    <p set:html={rich(L.host)} />
+    <h2 class="t">Propriété intellectuelle</h2>
+    <p>Les textes et les photographies de ce site sont la propriété de SEREPI. Toute reproduction sans autorisation est interdite.</p>
+  </div></section>
+</Base>

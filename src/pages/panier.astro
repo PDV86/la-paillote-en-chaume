@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { u } from '../lib/url';
+const path = '/panier/';
+---
+<Base title="Votre panier | SEREPI – La paillote en chaume" description="Votre panier de tuiles de chaume, cônes de faîtage et tuiles d’angle SEREPI : quantités, prix dégressif dès 12 tuiles et total avant commande." path={path} noindex crumbs={[{ name: 'Panier', path }]}>
+  <PageHead crumbs={[{ name: 'Panier', path }]} title="Votre panier" />
+  <section class="sec tight" style="padding-top:8px" data-cart-page><div class="wrap cart-page">
+    <div data-cart-lines></div>
+    <aside class="summary">
+      <div data-cart-totals></div>
+      <a class="btn solid block" href={u('/commande/')} data-cart-go>Passer commande</a>
+      <a class="arrow" href={u('/tuiles-de-chaume/')}>Continuer mes achats</a>
+    </aside>
+  </div></section>
+</Base>

@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Faq from '../components/Faq.astro';
+import { FAQ_COMMANDE, FAQ_CHAUME, FAQ_PAILLOTE, FAQ_ALL } from '../data/faq';
+import { faqLd } from '../lib/seo';
+import { u } from '../lib/url';
+const path = '/faq/';
+---
+<Base title="Questions fréquentes : tuiles de chaume et paillotes | SEREPI" description="Prix des tuiles de chaume, quantités, pose, durée de vie, livraison, paillote complète, commandes des professionnels : les réponses de SEREPI." path={path} pageType="FAQPage" crumbs={[{ name: 'Questions fréquentes', path }]} ld={[faqLd(FAQ_ALL)]}>
+  <PageHead crumbs={[{ name: 'Questions fréquentes', path }]} kicker="Questions fréquentes" title="Tuiles de chaume et paillotes : vos questions" lead="SEREPI fournit depuis une vingtaine d’années des paillotes et des tuiles de chaume naturel à monter soi-même, pour les particuliers comme pour les professionnels." />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap narrow">
+    <h2 class="t" style="font-size:22px;margin-top:12px">Commande, prix et livraison</h2><Faq items={FAQ_COMMANDE} />
+    <h2 class="t" style="font-size:22px;margin-top:48px">Le chaume et sa pose</h2><Faq items={FAQ_CHAUME} />
+    <h2 class="t" style="font-size:22px;margin-top:48px">Les paillotes</h2><Faq items={FAQ_PAILLOTE} />
+    <div class="ctas" style="margin-top:40px"><a class="btn solid" href={u('/contact/')}>Poser une autre question</a><a class="arrow" href={u('/notices-de-montage/')}>Notices de montage</a></div>
+  </div></section>
+</Base>

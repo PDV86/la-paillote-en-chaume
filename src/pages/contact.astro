@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { SITE } from '../data/site';
+import { rich } from '../lib/text';
+const path = '/contact/';
+---
+<Base title="Contact SEREPI – La paillote en chaume" description="Contactez SEREPI pour une question sur les tuiles de chaume, une paillote Bora ou une commande professionnelle : téléphone et formulaire, réponse rapide." path={path} pageType="ContactPage" crumbs={[{ name: 'Contact', path }]}>
+  <PageHead crumbs={[{ name: 'Contact', path }]} kicker="Contact" title="Contacter SEREPI" lead="Une question sur un modèle, une quantité de tuiles ou une livraison ? Appelez-nous ou écrivez-nous." />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap two top">
+    <div>
+      <dl class="facts">
+        <dt>Téléphone</dt><dd><a href={`tel:${SITE.telIntl}`}>{SITE.tel}</a></dd>
+        <dt>E-mail</dt><dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a> <span set:html={rich(SITE.emailTodo)} /></dd>
+        <dt>Horaires</dt><dd set:html={rich(SITE.hours)} />
+        <dt>Zone</dt><dd>{SITE.area}. Vente uniquement à distance, sans point de vente.</dd>
+      </dl>
+    </div>
+    <QuoteForm full={false} />
+  </div></section>
+</Base>

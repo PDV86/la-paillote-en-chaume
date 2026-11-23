@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Calculator from '../components/Calculator.astro';
+import Wall from '../components/Wall.astro';
+import Reassure from '../components/Reassure.astro';
+import Faq from '../components/Faq.astro';
+import { PRODUCTS } from '../data/catalogue';
+import { FAQ_ALL } from '../data/faq';
+import { SITE } from '../data/site';
+import { faqLd, itemListLd } from '../lib/seo';
+import { u } from '../lib/url';
+const faq = [FAQ_ALL[5], FAQ_ALL[1], FAQ_ALL[8], FAQ_ALL[6], FAQ_ALL[4]];
+---
+<Base
+  title="Tuiles de chaume et paillotes en chaume | SEREPI"
+  description="Tuiles de chaume naturel en roseau d’Afrique du Sud, vendues à l’unité et expédiées sous 8 jours pour renouveler toute paillote. Paillote Bora sur demande."
+  path="/"
+  over
+  image="/images/og-la-paillote-en-chaume.jpg"
+  ld={[faqLd(faq), itemListLd('/', PRODUCTS.map((p) => ({ name: p.name, path: `/tuiles-de-chaume/${p.slug}/` })))]}
+>
+  <section class="hero" aria-label="Présentation">
+    <Img name="bar-de-plage-paillotes-bora" alt="Paillotes Bora en chaume sur la terrasse d’un bar de plage, face à la mer" eager sizes="100vw" />
+    <div class="wrap in">
+      <span class="hand">Un air de vacances, toute l’année</span>
+      <span class="sc">Roseau d’Afrique du Sud · expédié sous 8 jours</span>
+      <h1 class="t">Tuiles de chaume naturel pour renouveler votre paillote</h1>
+      <p>Tuiles, cônes de faîtage et tuiles d’angle à commander en ligne, pour tous les modèles de paillote. Paillote complète Bora sur demande.</p>
+      <div class="ctas"><a href={u('/tuiles-de-chaume/')} class="btn gold">Commander mes tuiles</a><a href="#calculateur" class="btn ghost">Calculer mes quantités</a></div>
+    </div>
+    <p class="photo-note">Photo SEREPI · bar de plage équipé de paillotes Bora <span class="todo">[À VALIDER : lieu, accord de l’établissement]</span></p>
+  </section>
+
+  <section class="sec tight" aria-label="Nos offres">
+    <div class="wrap tiles">
+      <a href={u('/tuiles-de-chaume/')} class="tile"><Img name="tuiles-de-chaume-gros-plan" alt="Tuiles de chaume vues de près" sizes="(max-width:760px) 100vw, 33vw" /><div class="tile-t"><span class="hand">dès 19 € HT la tuile</span><b>Tuiles de chaume</b><small>Renouveler le chaume de toute paillote</small></div></a>
+      <a href={u('/paillotes-en-chaume/bora/')} class="tile"><Img name="paillote-bora-piscine-vignette" alt="Paillote Bora au bord d’une piscine" sizes="(max-width:760px) 100vw, 33vw" /><div class="tile-t"><span class="hand">sur demande</span><b>Paillote Bora</b><small>Ø 2 m, à monter soi-même</small></div></a>
+      <a href={u('/professionnels/')} class="tile"><Img name="terrasse-bar-de-plage-paillotes" alt="Terrasse de bar de plage équipée de paillotes Bora" sizes="(max-width:760px) 100vw, 33vw" /><div class="tile-t"><span class="hand">campings, plages, parcs</span><b>Professionnels</b><small>Prix HT, devis en volume dès 4 paillotes</small></div></a>
+    </div>
+  </section>
+
+  <section class="sec creme" id="boutique">
+    <div class="wrap">
+      <div class="head"><span class="sc">La boutique en ligne</span><h2 class="t">Tuiles de chaume au détail</h2><p>Pour renouveler le chaume de votre paillote, quel que soit son modèle : la structure dure, seules les tuiles se remplacent. Roseau d’Afrique du Sud, commande en ligne, expédition sous 8 jours sur palette.</p></div>
+      <div class="prods">{PRODUCTS.map((p) => <ProductCard p={p} />)}</div>
+      <p class="center small muted" style="margin-top:22px">Prix affichés TTC pour les particuliers. Professionnels : choisissez « Pro » en haut de page pour voir les prix hors taxes.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap two">
+      <div class="ba">
+        <figure><Img name="renouvellement-avant" alt="Structure de paillote nue, sans chaume, au bord d’une piscine" sizes="(max-width:900px) 50vw, 25vw" /><span class="tag">Avant</span></figure>
+        <figure><Img name="renouvellement-apres" alt="La même structure couverte de tuiles de chaume neuves" sizes="(max-width:900px) 50vw, 25vw" /><span class="tag">Après</span></figure>
+      </div>
+      <div>
+        <span class="sc">Renouveler son chaume</span>
+        <h2 class="t">La structure dure, seul le chaume se change</h2>
+        <p>Pas besoin de racheter une paillote : identifiez les pièces de votre toit, calculez la quantité, puis posez les tuiles sur la structure existante, par crochets en nylon, clous ou agrafes.</p>
+        <ul class="pieces" style="margin-top:22px">
+          <li><b>Toit rond</b><span>Bora, Moorea, parasol : tuiles standard et 1 cône de faîtage</span></li>
+          <li><b>Toit à plusieurs pans</b><span>Tuiles standard, tuiles d’angle sur les arêtes et 1 cône</span></li>
+          <li><b>Toit à deux pans</b><span>Tuiles standard et faîtières en V sur le faîtage</span></li>
+        </ul>
+        <p class="small" style="margin-top:10px"><span class="todo">[À VALIDER : règles de pose par type de toit]</span></p>
+        <div class="ctas" style="margin-top:24px"><a class="btn solid" href={u('/renouvellement-chaume/')}>Renouveler mon chaume</a><a class="arrow" href={u('/conseils/poser-des-tuiles-de-chaume/')}>Guide de pose</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec creme">
+    <div class="wrap">
+      <div class="head"><span class="sc">Calculateur de quantités</span><h2 class="t">Le bon nombre de tuiles, au bon prix</h2><p>Choisissez votre paillote ou indiquez la surface de toiture : nous calculons le nombre de tuiles et le prix, avec le tarif dégressif dès 12 tuiles.</p></div>
+      <Calculator heading="h3" />
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap two">
+      <figure class="figure"><Img name="paillote-bora-piscine" alt="Paillote en chaume Bora neuve sur mât en bois, au bord d’une piscine" sizes="(max-width:900px) 100vw, 45vw" /><figcaption>Bora au bord d’une piscine · photo SEREPI</figcaption></figure>
+      <div>
+        <span class="sc">Paillote complète · sur demande</span>
+        <h2 class="t">La paillote Bora</h2>
+        <p>Ø 2,00 m, 3 rangées de tuiles de chaume, structure acier d’un seul montant et mât en pin traité autoclave. Elle se monte et se démonte sans professionnel. Prix et délai sur devis.</p>
+        <p>La Moorea (Ø 2,80 m) sera de nouveau proposée prochainement ; en attendant, nous fournissons les tuiles pour renouveler son chaume.</p>
+        <div class="ctas" style="margin-top:24px"><a class="btn solid" href={u('/devis/')}>Demander un prix</a><a class="arrow" href={u('/paillotes-en-chaume/bora/')}>Fiche complète</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Professionnels">
+    <Img name="paillotes-bora-coucher-de-soleil" alt="Paillotes Bora en chaume sur une terrasse de bar de plage, au coucher du soleil" sizes="100vw" />
+    <div class="wrap"><div class="txt">
+      <span class="hand">Vos clients à l’ombre, face à la mer</span>
+      <h2 class="t">Campings, plages et parcs de loisirs</h2>
+      <p>Des paillotes qui tiennent au vent, des tuiles qui se remplacent une à une, des prix hors taxes et un devis établi pour votre volume.</p>
+      <div class="ctas"><a class="btn gold" href={u('/devis/')}>Devis professionnel</a><a class="btn ghost" href={u('/professionnels/')}>Espace professionnels</a></div>
+    </div></div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="head"><span class="sc">Nos paillotes, chez vous</span><h2 class="t">Réalisations</h2><p>Bords de mer, piscines, jardins et campings : toutes les photos sont des installations SEREPI. <span class="todo">[À VALIDER : lieux et accords des clients]</span></p></div>
+      <Wall limit={8} />
+      <p class="center" style="margin-top:28px"><a class="arrow" href={u('/realisations/')}>Toutes les réalisations</a></p>
+    </div>
+  </section>
+
+  <section class="sec tight creme" aria-label="Nos engagements"><div class="wrap"><Reassure /></div></section>
+
+  <section class="sec">
+    <div class="wrap two top">
+      <div>
+        <span class="sc">Questions fréquentes</span>
+        <h2 class="t">Avant de commander</h2>
+        <p class="muted">SEREPI fournit {SITE.since} des paillotes en chaume à monter soi-même et les tuiles de chaume naturel pour les renouveler, aux particuliers comme aux professionnels.</p>
+        <p style="margin-top:20px"><a class="arrow" href={u('/faq/')}>Toutes les questions</a></p>
+      </div>
+      <Faq items={faq} open />
+    </div>
+  </section>
+
+  <section class="sec dark">
+    <div class="wrap center narrow">
+      <span class="sc">Contact</span>
+      <h2 class="t">Parlons de votre projet</h2>
+      <p>Une question sur un modèle, une quantité de tuiles ou une livraison ? Appelez-nous ou envoyez une demande de devis.</p>
+      <div class="ctas" style="justify-content:center;margin-top:26px"><a class="btn gold" href={`tel:${SITE.telIntl}`}>{SITE.tel}</a><a class="btn ghost" href={u('/devis/')}>Demande de devis</a></div>
+    </div>
+  </section>
+</Base>

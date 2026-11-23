@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Img from '../components/Img.astro';
+import Brief from '../components/Brief.astro';
+import Calculator from '../components/Calculator.astro';
+import Faq from '../components/Faq.astro';
+import { FAQ_CHAUME } from '../data/faq';
+import { faqLd, howToLd } from '../lib/seo';
+import { u } from '../lib/url';
+const path = '/renouvellement-chaume/';
+const faq = [FAQ_CHAUME[0], FAQ_CHAUME[3], FAQ_CHAUME[1], FAQ_CHAUME[2], FAQ_CHAUME[6]];
+const steps = [
+  { name: 'Identifier le toit', text: 'Notez le modèle de la paillote ou mesurez la surface de toiture en pente. Toit rond : tuiles standard et cône. Toit à pans : tuiles d’angle sur les arêtes. Toit à deux pans : faîtières en V.' },
+  { name: 'Calculer les quantités', text: 'Une Bora demande 8 tuiles et 1 cône. Pour un autre toit, comptez environ 4 tuiles par m² de toiture.' },
+  { name: 'Commander en ligne', text: 'Les tuiles, cônes et tuiles d’angle sont vendus à l’unité, avec un prix dégressif dès 12 tuiles, et expédiés sous 8 jours.' },
+  { name: 'Déposer l’ancien chaume', text: 'Retirez les anciennes tuiles et le cône ; la structure reste en place.' },
+  { name: 'Poser les tuiles neuves', text: 'Posez les rangées du bas vers le haut, par crochets en nylon, clous ou agrafes, puis coiffez le sommet du cône de faîtage.' },
+];
+---
+<Base title="Renouveler le chaume d’une paillote : tuiles de rechange | SEREPI" description="Changez seulement la couverture de votre paillote : tuiles de chaume, cône et tuiles d’angle pour tous les modèles et toutes les marques, expédiés sous 8 jours." path={path} crumbs={[{ name: 'Renouveler son chaume', path }]} ld={[howToLd({ path, name: 'Renouveler le chaume d’une paillote', description: 'Les étapes pour remplacer la couverture en chaume d’une paillote sans changer sa structure.', steps, supply: ['Tuiles de chaume standard', 'Cône de faîtage', 'Crochets nylon, clous ou agrafes'] }), faqLd(faq)]}>
+  <PageHead crumbs={[{ name: 'Renouveler son chaume', path }]} kicker="Renouvellement du chaume" title="Renouveler le chaume de votre paillote" lead="La structure d’une paillote dure ; sa couverture en chaume, elle, se change au bout de 8 à 12 ans selon le climat. SEREPI fournit les tuiles pour tous les modèles, SEREPI ou d’une autre marque : vous gardez votre structure et ne remplacez que le chaume.">
+    <Brief items={['Pour tous les modèles de paillote, toutes marques', 'Bora : 8 tuiles standard et 1 cône de faîtage', 'Tuile à 23 € HT, 19 € HT dès 12 tuiles ; cône à 65 € HT', 'Expédition sous 8 jours sur palette filmée']} />
+  </PageHead>
+  <section class="sec tight"><div class="wrap two">
+    <div class="ba">
+      <figure><Img name="renouvellement-avant" alt="Structure de paillote nue, sans chaume, au bord d’une piscine" eager sizes="(max-width:900px) 50vw, 25vw" /><span class="tag">Avant</span></figure>
+      <figure><Img name="renouvellement-apres" alt="La même structure couverte de tuiles de chaume neuves" sizes="(max-width:900px) 50vw, 25vw" /><span class="tag">Après</span></figure>
+    </div>
+    <div>
+      <h2 class="t">Quelles pièces commander ?</h2>
+      <ul class="pieces">
+        <li><b>Toit rond</b><span>Bora, Moorea, parasol : <a href={u('/tuiles-de-chaume/tuile-standard/')}>tuiles standard</a> et 1 <a href={u('/tuiles-de-chaume/cone-de-faitage/')}>cône de faîtage</a></span></li>
+        <li><b>Toit à plusieurs pans</b><span>Acapulco, toit à arêtes : tuiles standard, <a href={u('/tuiles-de-chaume/tuile-d-angle/')}>tuiles d’angle</a> sur les arêtes et 1 cône</span></li>
+        <li><b>Toit à deux pans</b><span>Faîtage horizontal : tuiles standard et <a href={u('/tuiles-de-chaume/faitiere-en-v/')}>faîtières en V</a></span></li>
+      </ul>
+      <p class="small" style="margin-top:10px"><span class="todo">[À VALIDER : règles de pose par type de toit]</span></p>
+      <p style="margin-top:16px">Vous ne connaissez pas le modèle ? Envoyez-nous une photo de votre paillote avec une <a href={u('/devis/')}>demande de devis</a> : nous identifions les pièces et la quantité.</p>
+    </div>
+  </div></section>
+  <section class="sec creme" id="calcul"><div class="wrap"><Calculator heading="h2" title="Calculez le chaume de votre paillote" /></div></section>
+  <section class="sec"><div class="wrap narrow">
+    <h2 class="t">Renouveler le chaume, étape par étape</h2>
+    <ol class="steps" style="margin-top:24px">{steps.map((s, i) => <li id={`etape-${i + 1}`}><b>{s.name}</b>{s.text}</li>)}</ol>
+    <p style="margin-top:24px"><a class="arrow" href={u('/conseils/poser-des-tuiles-de-chaume/')}>Le guide de pose complet</a></p>
+  </div></section>
+  <section class="sec creme"><div class="wrap narrow"><h2 class="t">Questions fréquentes</h2><Faq items={faq} open /></div></section>
+</Base>

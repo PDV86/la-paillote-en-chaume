@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { u } from '../lib/url';
+const path = '/commande/';
+---
+<Base title="Commande | SEREPI – La paillote en chaume" description="Finalisez votre commande de tuiles de chaume SEREPI : coordonnées, adresse de livraison, informations professionnelles et mode de paiement." path={path} noindex crumbs={[{ name: 'Panier', path: '/panier/' }, { name: 'Commande', path }]}>
+  <PageHead crumbs={[{ name: 'Panier', path: '/panier/' }, { name: 'Commande', path }]} title="Finaliser la commande" />
+  <section class="sec tight" style="padding-top:8px" data-cart-page><div class="wrap cart-page">
+    <div>
+      <p class="empty" data-empty-msg>Si votre panier est vide, <a href={u('/tuiles-de-chaume/')}>choisissez vos tuiles</a>.</p>
+      <form class="form" data-checkout action={u('/api/commande.php')} method="post" novalidate>
+        <fieldset class="field"><legend>Vous commandez en tant que *</legend>
+          <div class="choices"><label><input type="radio" name="client" value="part" checked /> Particulier (prix TTC)</label><label><input type="radio" name="client" value="pro" /> Professionnel (prix HT)</label></div>
+        </fieldset>
+        <div class="row2" data-pro-only hidden>
+          <div class="field"><label for="c-ste">Raison sociale *</label><input id="c-ste" name="societe" autocomplete="organization" data-req="1" /></div>
+          <div class="field"><label for="c-siret">SIRET *</label><input id="c-siret" name="siret" inputmode="numeric" pattern="[0-9 ]{14,17}" data-req="1" /></div>
+          <div class="field"><label for="c-tva">N° de TVA intracommunautaire</label><input id="c-tva" name="tva" /></div>
+          <div class="field"><label for="c-ref">Votre référence de commande</label><input id="c-ref" name="reference" /></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="c-prenom">Prénom *</label><input id="c-prenom" name="prenom" autocomplete="given-name" required /></div>
+          <div class="field"><label for="c-nom">Nom *</label><input id="c-nom" name="nom" autocomplete="family-name" required /></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="c-mail">E-mail *</label><input id="c-mail" name="email" type="email" autocomplete="email" required /></div>
+          <div class="field"><label for="c-tel">Téléphone * (pour le transporteur)</label><input id="c-tel" name="telephone" type="tel" autocomplete="tel" required /></div>
+        </div>
+        <div class="field"><label for="c-adr">Adresse de livraison *</label><input id="c-adr" name="adresse" autocomplete="street-address" required /></div>
+        <div class="row2">
+          <div class="field"><label for="c-cp">Code postal *</label><input id="c-cp" name="cp" required pattern="[0-9]{5}" inputmode="numeric" autocomplete="postal-code" /></div>
+          <div class="field"><label for="c-ville">Ville *</label><input id="c-ville" name="ville" autocomplete="address-level2" required /></div>
+        </div>
+        <div class="field"><label for="c-note">Précisions pour la livraison</label><textarea id="c-note" name="precisions" placeholder="Accès, créneau, hayon nécessaire…"></textarea></div>
+        <fieldset class="field"><legend>Paiement *</legend>
+          <div class="choices"><label><input type="radio" name="paiement" value="carte" checked /> Carte bancaire (page sécurisée)</label><label><input type="radio" name="paiement" value="virement" /> Virement bancaire</label></div>
+          <span class="small muted">Prestataire de paiement : <span class="todo">[À VALIDER : prestataire de paiement]</span></span>
+        </fieldset>
+        <label class="check"><input type="checkbox" name="cgv" value="1" required /> <span>J’ai lu et j’accepte les <a href={u('/cgv/')}>conditions générales de vente</a>.</span></label>
+        <p class="err" data-err role="alert"></p>
+        <div><button type="submit" class="btn gold">Valider la commande</button></div>
+      </form>
+      <div class="ok" data-done hidden role="status"></div>
+    </div>
+    <aside class="summary"><b class="sc">Récapitulatif</b><div data-cart-lines></div><div data-cart-totals></div></aside>
+  </div></section>
+</Base>

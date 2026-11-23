@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Wall from '../components/Wall.astro';
+import { WALL } from '../data/realisations';
+import { imgAbs, abs } from '../lib/seo';
+import { u } from '../lib/url';
+const path = '/realisations/';
+const gallery = { '@type': 'ImageGallery', '@id': `${abs(path)}#gallery`, name: 'Réalisations SEREPI : paillotes en chaume installées', image: WALL.map((w) => ({ '@type': 'ImageObject', contentUrl: imgAbs(w.img), name: w.title, creditText: 'SEREPI' })) };
+---
+<Base title="Réalisations : paillotes en chaume installées | SEREPI" description="Paillotes en chaume SEREPI installées en bord de mer, au bord des piscines, dans les jardins et les campings, et chaume renouvelé : nos réalisations en photos." path={path} pageType="CollectionPage" crumbs={[{ name: 'Réalisations', path }]} ld={[gallery]}>
+  <PageHead crumbs={[{ name: 'Réalisations', path }]} kicker="Nos paillotes, chez vous" title="Nos paillotes en chaume installées" lead="Paillotes complètes et renouvellements de chaume, chez des particuliers et des professionnels. Toutes les photos sont des installations SEREPI ; chaque réalisation sera présentée avec son lieu et, avec l’accord du client, son témoignage." />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap"><Wall /><p class="small muted" style="margin-top:14px">Cliquez sur une photo pour l’agrandir. <span class="todo">[À VALIDER : lieux et accords des clients]</span></p></div></section>
+  <section class="sec creme"><div class="wrap narrow center">
+    <span class="sc">Avis clients</span>
+    <h2 class="t">Ce que disent nos clients</h2>
+    <p>Les avis réels de la fiche Google SEREPI s’afficheront ici. Tant qu’il n’y en a pas, rien n’est affiché : ni note, ni étoile, ni témoignage. <span class="todo">[À COMPLÉTER : lien de la fiche Google]</span></p>
+    <div class="ctas" style="justify-content:center;margin-top:20px"><a class="btn line" href={u('/contact/')}>Nous envoyer une photo de votre paillote</a></div>
+  </div></section>
+</Base>

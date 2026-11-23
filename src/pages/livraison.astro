@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Brief from '../components/Brief.astro';
+import { u } from '../lib/url';
+const path = '/livraison/';
+---
+<Base title="Livraison des tuiles de chaume et des paillotes | SEREPI" description="Tuiles de chaume expédiées sous 8 jours sur palette filmée, France entière, Corse comprise. Frais de port selon la destination, retours sous 14 jours." path={path} crumbs={[{ name: 'Livraison', path }]}>
+  <PageHead crumbs={[{ name: 'Livraison', path }]} kicker="Livraison et retours" title="Livraison et retours" lead="Les commandes de tuiles de chaume sont expédiées sous 8 jours, sur palette filmée, partout en France, Corse comprise. Le délai de transport dépend ensuite de la destination.">
+    <Brief items={['Expédition sous 8 jours après la commande', 'Palette filmée, France entière, Corse comprise', 'Frais de port selon la zone de livraison [À VALIDER : grille]', 'Droit de rétractation de 14 jours pour les particuliers']} />
+  </PageHead>
+  <section class="sec tight"><div class="wrap narrow prose">
+    <h2 class="t">Délais</h2>
+    <p>Les tuiles, cônes de faîtage et tuiles d’angle sont expédiés sous 8 jours. Le délai de transport s’ajoute selon la destination. <span class="todo">[À VALIDER : délai de transport et transporteur]</span></p>
+    <p>Les paillotes complètes sont livrées sur palette filmée, avec un délai indiqué sur le devis.</p>
+    <h2 class="t">Frais de port</h2>
+    <p>Les frais de port sont forfaitaires, selon la zone de livraison et le nombre de tuiles. <span class="todo">[À VALIDER : grille de frais de port par zone, à reprendre du classeur « SEREPI_frais_de_livraison »]</span></p>
+    <h2 class="t">À la réception</h2>
+    <p>Vérifiez l’état de la palette en présence du livreur et notez toute réserve sur le bon de livraison. <span class="todo">[À VALIDER : procédure en cas de colis endommagé]</span></p>
+    <h2 class="t">Retours</h2>
+    <p>Les particuliers disposent d’un délai de 14 jours après la réception pour exercer leur droit de rétractation, conformément au Code de la consommation. <span class="todo">[À VALIDER : conditions de retour et frais à la charge du client]</span></p>
+    <p>Une question sur une livraison ? <a href={u('/contact/')}>Contactez-nous</a>.</p>
+  </div></section>
+</Base>

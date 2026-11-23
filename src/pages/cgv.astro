@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { SITE } from '../data/site';
+import { rich } from '../lib/text';
+const path = '/cgv/';
+---
+<Base title="Conditions générales de vente | SEREPI – La paillote en chaume" description="Conditions générales de vente des tuiles de chaume et paillotes SEREPI : commande en ligne, prix, paiement, livraison, rétractation, garanties et litiges." path={path} crumbs={[{ name: 'Conditions générales de vente', path }]}>
+  <PageHead crumbs={[{ name: 'Conditions générales de vente', path }]} title="Conditions générales de vente" />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap narrow prose">
+    <p class="notice warn">Les conditions générales de vente doivent être rédigées et validées avant l’ouverture de la vente en ligne. <span class="todo">[À COMPLÉTER : texte des CGV]</span></p>
+    <h2 class="t">Sommaire prévu</h2>
+    <ol>
+      <li>Champ d’application : ventes aux particuliers et aux professionnels</li>
+      <li>Produits : tuiles de chaume, cônes de faîtage, tuiles d’angle, faîtières ; paillotes complètes sur devis</li>
+      <li>Prix : TTC pour les particuliers, HT pour les professionnels ; prix dégressif de la tuile standard dès 12 unités</li>
+      <li>Commande et confirmation</li>
+      <li>Paiement : carte bancaire, virement</li>
+      <li>Livraison : expédition sous 8 jours, frais de port selon la zone, réception et réserves</li>
+      <li>Droit de rétractation de 14 jours (particuliers)</li>
+      <li>Garanties légales de conformité et des vices cachés</li>
+      <li>Réclamations et médiation de la consommation : <span set:html={rich(SITE.legal.mediator)} /></li>
+      <li>Données personnelles</li>
+    </ol>
+  </div></section>
+</Base>

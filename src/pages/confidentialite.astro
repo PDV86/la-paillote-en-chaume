@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { SITE } from '../data/site';
+const path = '/confidentialite/';
+---
+<Base title="Confidentialité et données personnelles | SEREPI" description="Comment SEREPI utilise les données transmises par les formulaires de devis, de contact et de commande du site la-paillote-en-chaume.com, et vos droits." path={path} crumbs={[{ name: 'Confidentialité', path }]}>
+  <PageHead crumbs={[{ name: 'Confidentialité', path }]} title="Confidentialité et données personnelles" />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap narrow prose">
+    <h2 class="t">Données collectées</h2>
+    <p>Les formulaires de devis, de contact et de commande recueillent les informations nécessaires pour vous répondre et pour livrer votre commande : nom, coordonnées, adresse de livraison et, pour les professionnels, raison sociale et SIRET.</p>
+    <h2 class="t">Utilisation</h2>
+    <p>Ces données servent uniquement à traiter votre demande ou votre commande et à établir les factures. Elles ne sont ni vendues ni cédées. Les données de paiement par carte sont traitées directement par le prestataire de paiement et ne transitent pas par SEREPI. <span class="todo">[À VALIDER : prestataire de paiement, durée de conservation]</span></p>
+    <h2 class="t">Mesure d’audience et cookies</h2>
+    <p>Le site n’utilise pas de cookie publicitaire. Le panier est enregistré dans votre navigateur. <span class="todo">[À VALIDER : outil de mesure d’audience éventuel]</span></p>
+    <h2 class="t">Vos droits</h2>
+    <p>Vous pouvez demander l’accès, la rectification ou la suppression de vos données en nous contactant au {SITE.tel}. Vous pouvez aussi saisir la CNIL.</p>
+  </div></section>
+</Base>

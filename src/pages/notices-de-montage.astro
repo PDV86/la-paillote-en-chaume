@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { u, pdf } from '../lib/url';
+const path = '/notices-de-montage/';
+const docs = [
+  { t: 'Notice de montage Bora', d: 'Paillote Bora, Ø 2,00 m', f: 'montage2m.pdf' },
+  { t: 'Notice de montage Moorea', d: 'Paillote Moorea, Ø 2,80 m', f: 'montage2.80m.pdf' },
+  { t: 'Notice de montage Acapulco', d: 'Paillote Acapulco, Ø 3,80 m', f: 'montage3.80m.pdf' },
+  { t: 'Mise en place du chaume', d: 'Pose des tuiles et du cône, tous modèles', f: 'chaume.pdf' },
+];
+---
+<Base title="Notices de montage des paillotes en chaume (PDF) | SEREPI" description="Téléchargez les notices de montage des paillotes en chaume SEREPI Bora, Moorea et Acapulco, et la notice de mise en place du chaume, en PDF." path={path} crumbs={[{ name: 'Notices de montage', path }]}>
+  <PageHead crumbs={[{ name: 'Notices de montage', path }]} kicker="Documents" title="Notices de montage des paillotes" lead="Les paillotes SEREPI se montent et se démontent sans professionnel. Chaque modèle a sa notice, et une notice commune explique la mise en place du chaume : tuiles rangée par rangée, puis cône de faîtage." />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap grid4">
+    {docs.map((x) => <a class="card link" href={pdf(x.f)}><span class="sc">PDF</span><h2 class="t" style="font-size:18px;margin:0">{x.t}</h2><p class="small muted">{x.d}</p><span class="arrow">Télécharger</span></a>)}
+  </div>
+  <p class="wrap small muted" style="margin-top:16px">Les notices de montage des modèles sont des documents scannés. <span class="todo">[À COMPLÉTER : versions texte à jour des notices]</span></p></section>
+  <section class="sec creme"><div class="wrap narrow prose">
+    <h2 class="t">Poser ou remplacer le chaume</h2>
+    <p>Pour couvrir une structure neuve ou renouveler un chaume usé, suivez le <a href={u('/conseils/poser-des-tuiles-de-chaume/')}>guide de pose des tuiles de chaume</a>, puis commandez les pièces dans la <a href={u('/tuiles-de-chaume/')}>boutique</a>.</p>
+  </div></section>
+</Base>
