@@ -5,7 +5,7 @@ export const SITE = {
   url: 'https://www.la-paillote-en-chaume.com',
   name: 'La paillote en chaume',
   company: 'SEREPI',
-  brand: 'SEREPI – La paillote en chaume',
+  brand: 'SEREPI - La paillote en chaume',
   tagline: 'Paillotes et tuiles de chaume naturel',
   since: 'depuis une vingtaine d’années',
   // Même numéro que la fiche Google Business Profile « La Paillote en Chaume » (cohérence NAP).
