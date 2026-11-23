@@ -18,7 +18,7 @@ export const SITE = {
   // Entreprise sans adresse affichée (livraison uniquement), comme sur la fiche Google.
   area: 'Livraison France entière, Corse comprise',
   ogImage: '/images/og-la-paillote-en-chaume.jpg',
-  logo: '/favicon.svg',
+  logo: '/images/logo-serepi.png',
   googleProfile: '', // [À COMPLÉTER : lien de la fiche Google]
   tva: 0.2,
   shipDelay: 'expédiées sous 8 jours',
