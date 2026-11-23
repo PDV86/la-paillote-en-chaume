@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import Img from '../components/Img.astro';
-import Brief from '../components/Brief.astro';
+import Facts from '../components/Facts.astro';
 import Faq from '../components/Faq.astro';
 import { REFS, SITE } from '../data/site';
 import { FAQ_COMMANDE, FAQ_PAILLOTE } from '../data/faq';
@@ -12,32 +12,51 @@ const path = '/professionnels/';
 const faq = [FAQ_COMMANDE[2], FAQ_PAILLOTE[1], FAQ_COMMANDE[4], FAQ_COMMANDE[3]];
 ---
 <Base title="Paillotes en chaume pour campings, plages et hôtels | SEREPI" description="Paillotes et tuiles de chaume pour campings, bars de plage, parcs, résidences et golfs : prix HT, tuiles de rechange sous 8 jours, devis dès 4 paillotes." path={path} crumbs={[{ name: 'Professionnels', path }]} ld={[faqLd(faq), { '@type': 'Service', name: 'Paillotes en chaume pour les professionnels', serviceType: 'Fourniture de paillotes et de tuiles de chaume', provider: { '@id': `${SITE.url}/#organization` }, areaServed: { '@type': 'Country', name: 'France' }, audience: { '@type': 'BusinessAudience', name: 'Campings, bars de plage, parcs de loisirs, résidences hôtelières, golfs' } }]}>
-  <PageHead crumbs={[{ name: 'Professionnels', path }]} kicker="Professionnels" title="Paillotes en chaume pour les professionnels" lead="Campings, bars de plage, parcs de loisirs, résidences hôtelières, golfs : SEREPI équipe vos espaces extérieurs de paillotes qui tiennent au vent, et fournit les tuiles de rechange pour renouveler leur chaume sans toucher à la structure.">
-    <Brief items={['Prix hors taxes : choisissez « Pro » en haut de page', 'Devis dédié à partir de 4 paillotes', 'Tuiles de rechange en ligne, expédiées sous 8 jours', 'Facture avec TVA, paiement par carte ou par virement']} />
+  <PageHead crumbs={[{ name: 'Professionnels', path }]} title="Paillotes en chaume pour les professionnels" lead="Campings, bars de plage, parcs de loisirs, résidences hôtelières, golfs : SEREPI fournit des paillotes complètes et les tuiles de chaume pour renouveler les toitures existantes. Les tuiles de remplacement se commandent en ligne, prix hors taxes affichés ; pour équiper un site, nous établissons un devis selon le volume.">
+    <Facts label="Commander en tant que professionnel" rows={[
+      ['Prix', 'Hors taxes sur tout le site : choisissez « Pro » en haut de page'],
+      ['Tuiles de remplacement', 'En ligne, à l’unité, expédiées sous 8 jours'],
+      ['Équipement d’un site', 'Devis dédié à partir de 4 paillotes'],
+      ['Facturation', 'Raison sociale et SIRET à la commande, facture avec TVA'],
+      ['Paiement', 'Carte bancaire ou virement [À VALIDER : prestataire de paiement]'],
+    ]} />
+    <div class="ctas" style="margin-top:26px"><a class="btn gold" href={u('/devis/?profil=pro')}>Demander un devis professionnel</a><a class="arrow" href={u('/tuiles-de-chaume/')}>Commander des tuiles</a></div>
   </PageHead>
-  <section class="band" aria-label="Paillotes en terrasse">
-    <Img name="paillote-terrasse-oliviers" alt="Paillote en chaume sur une terrasse en bois, au milieu des oliviers" sizes="100vw" />
-    <div class="wrap"><div class="txt">
-      <span class="hand">Vos clients à l’ombre</span>
-      <h2 class="t">Un devis établi pour votre site</h2>
-      <p>Établissement, modèles, quantités, lieu, délai et photos : nous établissons un tarif et un délai adaptés à votre volume.</p>
-      <div class="ctas"><a class="btn gold" href={u('/devis/?profil=pro')}>Demande de devis professionnel</a></div>
-    </div></div>
-  </section>
-  <section class="sec"><div class="wrap grid3">
-    <div class="card"><span class="sc">Robustes</span><h2 class="t" style="font-size:20px;margin:0">Une structure qui tient au vent</h2><p>Structures en acier ou en aluminium, mâts en pin traité autoclave classe 4 de forte section, conçus pour résister à des vents violents.</p></div>
-    <div class="card"><span class="sc">Durables</span><h2 class="t" style="font-size:20px;margin:0">Un chaume qui se change pièce par pièce</h2><p>Tuiles de rechange expédiées sous 8 jours ; le remplacement se fait sans toucher à la structure, tuile par tuile si besoin.</p></div>
-    <div class="card"><span class="sc">Sur mesure du volume</span><h2 class="t" style="font-size:20px;margin:0">Un tarif dès 4 paillotes</h2><p>Campings 3 à 5 étoiles, bars de plage, parcs, résidences hôtelières, golfs : tarif et délai établis pour votre volume.</p></div>
-  </div></section>
-  <section class="sec creme"><div class="wrap two">
+
+  <section class="sec tight"><div class="wrap two">
+    <figure class="figure"><Img name="paillote-terrasse-oliviers" alt="Paillote en chaume sur une terrasse en bois, au milieu des oliviers" sizes="(max-width:900px) 100vw, 50vw" /><figcaption>Paillote sur une terrasse en bois, photo SEREPI <span class="todo">[À VALIDER : lieu]</span></figcaption></figure>
     <div>
-      <span class="sc">Ils ont équipé leurs sites</span>
-      <h2 class="t">Nos références</h2>
+      <h2 class="t">Un devis établi pour votre site</h2>
+      <p>Indiquez le type d’établissement, les modèles et les quantités, le lieu de livraison et la date souhaitée ; joignez si possible des photos de l’emplacement. Nous répondons avec un tarif et un délai adaptés à votre volume.</p>
+      <div class="ctas" style="margin-top:22px"><a class="btn solid" href={u('/devis/?profil=pro')}>Faire une demande</a><a class="arrow" href={`tel:${SITE.telIntl}`}>{SITE.tel}</a></div>
+    </div>
+  </div></section>
+
+  <section class="sec creme"><div class="wrap">
+    <h2 class="t">Ce que nous fournissons</h2>
+    <div class="offer" style="margin-top:24px">
+      <div>
+        <h3 class="t">Les matériaux de nos structures</h3>
+        <p>Bora, Ø 2,00 m : structure en acier d’un seul montant, peinture polyzinc anticorrosion, sur un mât central en pin Ø 100 mm traité autoclave classe 4.</p>
+        <p>Moorea, Ø 2,80 m : structure en aluminium anodisé en 3 parties, sur un mât en pin Ø 120 mm traité autoclave classe 4. De nouveau proposée prochainement.</p>
+        <p style="margin-top:14px"><a class="arrow" href={u('/paillotes-en-chaume/')}>Les paillotes</a></p>
+      </div>
+      <div>
+        <h3 class="t">Un chaume qui se change pièce par pièce</h3>
+        <p>La couverture se remplace sans toucher à la structure, tuile par tuile si besoin. Tuiles standard, cônes de faîtage et tuiles d’angle sont vendus à l’unité et expédiés sous 8 jours, avec un prix dégressif dès 12 tuiles.</p>
+        <p>Le chaume naturel dure de 8 à 12 ans selon le climat.</p>
+        <p style="margin-top:14px"><a class="arrow" href={u('/renouvellement-chaume/')}>Renouveler le chaume</a></p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap two top">
+    <div>
+      <h2 class="t">Ils ont équipé leurs sites</h2>
       <ul class="refs" style="margin-top:20px">{REFS.map((r) => <li>{r}</li>)}</ul>
       <p class="small muted" style="margin-top:16px">Références clients du site actuel <span class="todo">[À VALIDER : références toujours d’actualité et accord pour les citer]</span></p>
     </div>
     <div>
-      <span class="sc">Commander en tant que professionnel</span>
       <h2 class="t">Comment ça se passe</h2>
       <ol class="steps" style="margin-top:20px">
         <li><b>Prix hors taxes</b>Sélectionnez « Pro » : tous les prix du site passent en HT, panier compris.</li>
@@ -46,5 +65,5 @@ const faq = [FAQ_COMMANDE[2], FAQ_PAILLOTE[1], FAQ_COMMANDE[4], FAQ_COMMANDE[3]]
       </ol>
     </div>
   </div></section>
-  <section class="sec"><div class="wrap narrow"><h2 class="t">Questions des professionnels</h2><Faq items={faq} open /></div></section>
+  <section class="sec creme"><div class="wrap narrow"><h2 class="t">Questions des professionnels</h2><Faq items={faq} open /></div></section>
 </Base>

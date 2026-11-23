@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import Img from '../components/Img.astro';
-import Brief from '../components/Brief.astro';
+import Facts from '../components/Facts.astro';
 import Calculator from '../components/Calculator.astro';
 import Faq from '../components/Faq.astro';
 import { FAQ_CHAUME } from '../data/faq';
@@ -19,8 +19,8 @@ const steps = [
 ];
 ---
 <Base title="Renouveler le chaume d’une paillote : tuiles de rechange | SEREPI" description="Changez seulement la couverture de votre paillote : tuiles de chaume, cône et tuiles d’angle pour tous les modèles et toutes les marques, expédiés sous 8 jours." path={path} crumbs={[{ name: 'Renouveler son chaume', path }]} ld={[howToLd({ path, name: 'Renouveler le chaume d’une paillote', description: 'Les étapes pour remplacer la couverture en chaume d’une paillote sans changer sa structure.', steps, supply: ['Tuiles de chaume standard', 'Cône de faîtage', 'Crochets nylon, clous ou agrafes'] }), faqLd(faq)]}>
-  <PageHead crumbs={[{ name: 'Renouveler son chaume', path }]} kicker="Renouvellement du chaume" title="Renouveler le chaume de votre paillote" lead="La structure d’une paillote dure ; sa couverture en chaume, elle, se change au bout de 8 à 12 ans selon le climat. SEREPI fournit les tuiles pour tous les modèles, SEREPI ou d’une autre marque : vous gardez votre structure et ne remplacez que le chaume.">
-    <Brief items={['Pour tous les modèles de paillote, toutes marques', 'Bora : 8 tuiles standard et 1 cône de faîtage', 'Tuile à 23 € HT, 19 € HT dès 12 tuiles ; cône à 65 € HT', 'Expédition sous 8 jours sur palette filmée']} />
+  <PageHead crumbs={[{ name: 'Renouveler son chaume', path }]} title="Renouveler le chaume de votre paillote" lead="La structure d’une paillote dure ; sa couverture en chaume, elle, se change au bout de 8 à 12 ans selon le climat. SEREPI fournit les tuiles pour tous les modèles, SEREPI ou d’une autre marque : vous gardez votre structure et ne remplacez que le chaume.">
+    <Facts rows={[['Modèles', 'Tous les modèles de paillote, toutes marques'], ['Bora', '8 tuiles standard et 1 cône de faîtage'], ['Prix', 'Tuile 23 € HT, 19 € HT dès 12 tuiles ; cône de faîtage 65 € HT'], ['Expédition', 'Sous 8 jours, sur palette filmée']]} />
   </PageHead>
   <section class="sec tight"><div class="wrap two">
     <div class="ba">

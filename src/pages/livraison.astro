@@ -1,13 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
-import Brief from '../components/Brief.astro';
+import Facts from '../components/Facts.astro';
 import { u } from '../lib/url';
 const path = '/livraison/';
 ---
 <Base title="Livraison des tuiles de chaume et des paillotes | SEREPI" description="Tuiles de chaume expédiées sous 8 jours sur palette filmée, France entière, Corse comprise. Frais de port selon la destination, retours sous 14 jours." path={path} crumbs={[{ name: 'Livraison', path }]}>
-  <PageHead crumbs={[{ name: 'Livraison', path }]} kicker="Livraison et retours" title="Livraison et retours" lead="Les commandes de tuiles de chaume sont expédiées sous 8 jours, sur palette filmée, partout en France, Corse comprise. Le délai de transport dépend ensuite de la destination.">
-    <Brief items={['Expédition sous 8 jours après la commande', 'Palette filmée, France entière, Corse comprise', 'Frais de port selon la zone de livraison [À VALIDER : grille]', 'Droit de rétractation de 14 jours pour les particuliers']} />
+  <PageHead crumbs={[{ name: 'Livraison', path }]} title="Livraison et retours" lead="Les commandes de tuiles de chaume sont expédiées sous 8 jours, sur palette filmée, partout en France, Corse comprise. Le délai de transport dépend ensuite de la destination.">
+    <Facts rows={[['Expédition', 'Sous 8 jours après la commande'], ['Conditionnement', 'Palette filmée'], ['Zone', 'France entière, Corse comprise'], ['Frais de port', 'Selon la zone de livraison [À VALIDER : grille]'], ['Retours', 'Droit de rétractation de 14 jours pour les particuliers']]} />
   </PageHead>
   <section class="sec tight"><div class="wrap narrow prose">
     <h2 class="t">Délais</h2>

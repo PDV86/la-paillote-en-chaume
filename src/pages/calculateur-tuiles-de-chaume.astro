@@ -2,14 +2,14 @@
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import Calculator from '../components/Calculator.astro';
-import Brief from '../components/Brief.astro';
+import Facts from '../components/Facts.astro';
 import { u } from '../lib/url';
 const path = '/calculateur-tuiles-de-chaume/';
 const app = { '@type': 'WebApplication', name: 'Calculateur de tuiles de chaume', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Tous navigateurs', offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }, description: 'Calcule le nombre de tuiles de chaume et le prix pour couvrir ou renouveler une paillote, à partir du modèle ou de la surface de toiture.' };
 ---
 <Base title="Calculateur de tuiles de chaume pour paillote | SEREPI" description="Combien de tuiles de chaume pour votre paillote ? Choisissez le modèle ou la surface de toiture : nombre de tuiles, cône de faîtage et prix calculés." path={path} crumbs={[{ name: 'Calculateur de tuiles', path }]} ld={[app]}>
-  <PageHead crumbs={[{ name: 'Calculateur de tuiles', path }]} kicker="Outil gratuit" title="Calculateur de tuiles de chaume" lead="Choisissez le modèle de votre paillote ou indiquez la surface de toiture à couvrir : le calculateur donne le nombre de tuiles, le cône de faîtage et le prix, avec le tarif dégressif dès 12 tuiles.">
-    <Brief items={['Bora (Ø 2 m) : 8 tuiles standard et 1 cône de faîtage', 'Autre toit : environ 4 tuiles par m² de toiture mesurée en pente [À VALIDER : règle]', 'Prix TTC pour les particuliers, HT pour les professionnels (sélecteur en haut de page)']} />
+  <PageHead crumbs={[{ name: 'Calculateur de tuiles', path }]} title="Calculateur de tuiles de chaume" lead="Choisissez le modèle de votre paillote ou indiquez la surface de toiture à couvrir : le calculateur donne le nombre de tuiles, le cône de faîtage et le prix, avec le tarif dégressif dès 12 tuiles.">
+    <Facts rows={[['Bora, Ø 2 m', '8 tuiles standard et 1 cône de faîtage'], ['Autre toit', 'Environ 4 tuiles par m² de toiture mesurée en pente [À VALIDER : règle]'], ['Prix', 'TTC pour les particuliers, HT pour les professionnels (sélecteur en haut de page)']]} />
   </PageHead>
   <section class="sec tight"><div class="wrap"><Calculator /></div></section>
   <section class="sec creme"><div class="wrap narrow prose">
