@@ -112,8 +112,12 @@ function closeCart() { if (drawer) drawer.hidden = true; }
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeCart(); closeLb(); const mn = $('#mnav'); if (mn) mn.hidden = true; } });
 
 /* ---------- En-tête transparent sur l'accueil ---------- */
-const hdr = $('[data-hdr]');
-if (hdr?.classList.contains('over')) { const f = () => hdr.classList.toggle('solid', window.scrollY > 40); f(); window.addEventListener('scroll', f, { passive: true }); }
+// Barre compacte (symbole seul) une fois l'en-tête principal sorti de l'écran.
+const hdr = $('[data-hdr]'); const mini = $('[data-hdr-mini]');
+if (hdr && mini) {
+  const f = () => { const on = hdr.getBoundingClientRect().bottom < 0; mini.classList.toggle('show', on); mini.setAttribute('aria-hidden', String(!on)); $$('a,button', mini).forEach((el) => (on ? el.removeAttribute('tabindex') : el.setAttribute('tabindex', '-1'))); };
+  f(); window.addEventListener('scroll', f, { passive: true });
+}
 
 /* ---------- Calculateur ---------- */
 type Model = { id: string; name: string; tiles: number | null; cones: number };
