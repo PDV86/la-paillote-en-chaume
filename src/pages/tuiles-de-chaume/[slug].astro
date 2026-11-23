@@ -21,15 +21,28 @@ const others = PRODUCTS.filter((x) => x.id !== p.id);
 const pct = p.tier && p.unitHT ? Math.round((1 - p.tier.unitHT / p.unitHT) * 100) : 0;
 const img = p.image ? `/images/${p.image}-${IMAGES[p.image].widths[IMAGES[p.image].widths.length - 1]}.webp` : undefined;
 const ld: object[] = [productLd(p, path)];
+// Photos réelles de la pièce posée (galerie sous la photo produit).
+const GALLERY: Record<string, [string, string][]> = {
+  tuile: [['tuile-de-chaume-standard', 'Tuile de chaume standard, 80 × 42 cm'], ['tuiles-de-chaume-gros-plan', 'Tuiles posées, vues de près'], ['realisation-chaume-de-pres', 'Rangées de tuiles sur une paillote']],
+  cone: [['realisation-bora-piscine', 'Cône de faîtage au sommet d’une Bora'], ['realisation-bora-jardin-piscine', 'Bora coiffée de son cône'], ['realisation-moorea-jardin', 'Cône de faîtage sur une Moorea']],
+  angle: [['realisation-acapulco', 'Toit à pans d’une Acapulco, vu de dessous']],
+};
+const gallery = GALLERY[p.id] ?? [];
+const full = (k: string) => u(`/images/${k}-${IMAGES[k].widths[IMAGES[k].widths.length - 1]}.webp`);
 if (p.faq.length) ld.push(faqLd(p.faq));
 ---
 <Base title={title} description={description} path={path} pageType="ItemPage" crumbs={crumbs} image={img} ld={ld}>
   <div class="wrap" style="padding-top:28px"><Breadcrumbs crumbs={crumbs} /></div>
   <section class="sec tight" style="padding-top:24px"><div class="wrap pdp">
-    <div class="pic">{p.image ? <Img name={p.image} alt={p.alt} eager sizes="(max-width:860px) 100vw, 50vw" /> : <span class="muted">Photo à venir</span>}</div>
+    <div class="media">
+      <div class="pic">{p.image ? <Img name={p.image} alt={p.alt} eager sizes="(max-width:860px) 100vw, 45vw" /> : <span class="muted">Photo à venir <span class="todo">[À COMPLÉTER : photo]</span></span>}</div>
+      {gallery.length > 0 && <>
+        <div class="thumbs" data-lb-group>{gallery.map(([k, cap]) => <button type="button" data-full={full(k)} data-cap={`${cap} · photo SEREPI`} data-cap-html={`${cap} · photo SEREPI`}><Img name={k} alt={cap} sizes="(max-width:860px) 33vw, 14vw" /></button>)}</div>
+        <p class="thumbs-cap">En situation, photos SEREPI</p>
+      </>}
+    </div>
     <div>
-      <span class="sc">Tuiles de chaume · roseau d’Afrique du Sud</span>
-      <h1 class="t" style="margin:10px 0 12px">{p.name}</h1>
+      <h1 class="t" style="margin:0 0 12px">{p.name}</h1>
       <p class="lead">{p.short}</p>
       <div class="buy" data-buy data-tier-for={p.id}>
         {p.unitHT != null ? (
