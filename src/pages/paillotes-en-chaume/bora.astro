@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import Img from '../../components/Img.astro';
+import Brief from '../../components/Brief.astro';
+import Faq from '../../components/Faq.astro';
+import { FAQ_PAILLOTE, FAQ_CHAUME } from '../../data/faq';
+import { faqLd, abs, imgAbs } from '../../lib/seo';
+import { u, pdf } from '../../lib/url';
+const path = '/paillotes-en-chaume/bora/';
+const crumbs = [{ name: 'Paillotes en chaume', path: '/paillotes-en-chaume/' }, { name: 'Bora', path }];
+const faq = [FAQ_PAILLOTE[0], FAQ_CHAUME[1], FAQ_PAILLOTE[1], FAQ_CHAUME[2]];
+const specs: [string, string][] = [
+  ['Diamètre', '2,00 m'],
+  ['Couverture', 'Chaume naturel, 3 rangées de tuiles clipsées sur la structure'],
+  ['Tuiles', '8 tuiles standard de 5 cm d’épaisseur et 1 cône de faîtage Ø 85 cm'],
+  ['Structure', 'Acier d’un seul montant, peinture polyzinc anticorrosion couleur chaume'],
+  ['Fixation', 'Sur mât central en pin Ø 100 mm, traité autoclave classe 4'],
+  ['Durée de vie du chaume', '8 à 12 ans selon le climat'],
+  ['Livraison', 'Sur palette filmée'],
+  ['Montage', 'À monter et démonter soi-même, notice fournie'],
+];
+const product = {
+  '@type': 'Product', '@id': `${abs(path)}#product`, name: 'Paillote en chaume Bora Ø 2 m', brand: { '@type': 'Brand', name: 'SEREPI' },
+  description: 'Paillote en chaume naturel de 2 m de diamètre, structure acier, mât en pin traité autoclave, à monter soi-même. Vendue sur devis.',
+  image: [imgAbs('paillote-bora-piscine')], category: 'Paillotes en chaume',
+  additionalProperty: specs.map(([n, v]) => ({ '@type': 'PropertyValue', name: n, value: v })),
+};
+---
+<Base title="Paillote en chaume Bora Ø 2 m à monter soi-même | SEREPI" description="Paillote en chaume Bora : Ø 2 m, 3 rangées de tuiles de roseau, structure acier et mât en pin traité. À monter soi-même, prix et délai sur devis." path={path} pageType="ItemPage" crumbs={crumbs} image="/images/paillote-bora-piscine-1000.webp" ld={[product, faqLd(faq)]}>
+  <PageHead crumbs={crumbs} kicker="Paillote complète · sur demande" title="Paillote en chaume Bora" lead="La Bora est le parasol en chaume le plus compact de la gamme SEREPI : 2 mètres de diamètre, pour une terrasse, un bord de piscine ou un emplacement de camping. Elle se monte et se démonte sans professionnel.">
+    <Brief items={['Ø 2,00 m, 3 rangées de tuiles, 8 tuiles et 1 cône', 'Structure acier, mât en pin Ø 100 mm traité autoclave classe 4', 'Prix et délai sur devis, livraison sur palette filmée', 'Chaume remplaçable : tuiles de rechange en ligne']} />
+  </PageHead>
+  <section class="sec tight"><div class="wrap two top">
+    <figure class="figure"><Img name="paillote-bora-piscine" alt="Paillote en chaume Bora neuve sur mât en bois, au bord d’une piscine" eager sizes="(max-width:900px) 100vw, 45vw" /><figcaption>Bora au bord d’une piscine · photo SEREPI</figcaption></figure>
+    <div>
+      <h2 class="t" style="font-size:22px">Caractéristiques</h2>
+      <table class="specs"><tbody>{specs.map(([k, v]) => <tr><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody></table>
+      <div class="notice" style="margin-top:22px"><b>Sur demande.</b> La paillote complète ne se commande pas en ligne : nous établissons un prix et un délai. <span class="todo">[À VALIDER : prix 490 € ou 565 € HT, délai]</span></div>
+      <div class="ctas" style="margin-top:20px"><a class="btn solid" href={u('/devis/')}>Demander un prix</a><a class="btn line" href={pdf('montage2m.pdf')}>Notice de montage (PDF)</a></div>
+    </div>
+  </div></section>
+  <section class="sec creme"><div class="wrap two">
+    <div>
+      <span class="sc">Déjà une Bora ?</span>
+      <h2 class="t">Renouveler le chaume d’une Bora</h2>
+      <p>Une Bora se recouvre avec 8 tuiles de chaume standard et 1 cône de faîtage. La structure reste en place : il suffit de retirer les anciennes tuiles et de poser les neuves, rangée par rangée.</p>
+      <div class="ctas" style="margin-top:22px"><a class="btn gold" href={u('/renouvellement-chaume/')}>Commander le chaume d’une Bora</a></div>
+    </div>
+    <div class="ba">
+      <figure><Img name="renouvellement-avant" alt="Structure de paillote nue avant la pose du chaume" sizes="(max-width:900px) 50vw, 25vw" /><span class="tag">Avant</span></figure>
+      <figure><Img name="renouvellement-apres" alt="Structure de paillote couverte de tuiles de chaume neuves" sizes="(max-width:900px) 50vw, 25vw" /><span class="tag">Après</span></figure>
+    </div>
+  </div></section>
+  <section class="sec"><div class="wrap narrow"><h2 class="t">Questions sur la Bora</h2><Faq items={faq} open /></div></section>
+</Base>

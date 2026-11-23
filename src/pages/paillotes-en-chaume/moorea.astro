@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import Img from '../../components/Img.astro';
+import Brief from '../../components/Brief.astro';
+import { u, pdf } from '../../lib/url';
+const path = '/paillotes-en-chaume/moorea/';
+const crumbs = [{ name: 'Paillotes en chaume', path: '/paillotes-en-chaume/' }, { name: 'Moorea', path }];
+const specs: [string, string][] = [
+  ['Diamètre', '2,80 m'],
+  ['Couverture', 'Chaume naturel, 5 rangées de tuiles'],
+  ['Structure', 'Aluminium anodisé en 3 parties, inoxydable et légère'],
+  ['Fixation', 'Sur mât central en pin Ø 120 mm, traité autoclave classe 4'],
+  ['Durée de vie du chaume', '8 à 12 ans selon le climat'],
+];
+---
+<Base title="Paillote en chaume Moorea Ø 2,80 m et chaume de rechange | SEREPI" description="Paillote en chaume Moorea : Ø 2,80 m, 5 rangées de tuiles, structure aluminium. Bientôt de nouveau proposée ; tuiles de rechange disponibles dès maintenant." path={path} crumbs={crumbs} image="/images/paillote-moorea-jardin-1000.webp">
+  <PageHead crumbs={crumbs} kicker="Ø 2,80 m · bientôt" title="Paillote en chaume Moorea" lead="Plus grande que la Bora, la Moorea offre davantage d’ombre pour un salon de jardin ou une terrasse de restaurant. Elle n’est pas encore de nouveau disponible en paillote complète ; en attendant, nous fournissons les tuiles pour renouveler le chaume d’une Moorea existante.">
+    <Brief items={['Ø 2,80 m, 5 rangées de tuiles', 'Structure aluminium anodisé en 3 parties', 'Paillote complète : bientôt [À VALIDER : date]', 'Tuiles et cône de rechange disponibles en ligne']} />
+  </PageHead>
+  <section class="sec tight"><div class="wrap two top">
+    <figure class="figure"><Img name="paillote-moorea-jardin" alt="Paillote en chaume Moorea dans un jardin, face aux collines" eager sizes="(max-width:900px) 100vw, 45vw" /><figcaption>Moorea dans un jardin · photo SEREPI <span class="todo">[À VALIDER : lieu]</span></figcaption></figure>
+    <div>
+      <h2 class="t" style="font-size:22px">Caractéristiques</h2>
+      <table class="specs"><tbody>{specs.map(([k, v]) => <tr><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody></table>
+      <p style="margin-top:18px">Nombre de tuiles pour renouveler une Moorea : <span class="todo">[À COMPLÉTER : nombre de tuiles]</span></p>
+      <div class="ctas" style="margin-top:20px"><a class="btn solid" href={u('/renouvellement-chaume/')}>Renouveler le chaume d’une Moorea</a><a class="btn line" href={pdf('montage2.80m.pdf')}>Notice de montage (PDF)</a></div>
+      <p style="margin-top:18px"><a class="arrow" href={u('/contact/')}>Être prévenu de sa disponibilité</a></p>
+    </div>
+  </div></section>
+</Base>
