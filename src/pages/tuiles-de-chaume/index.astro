@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Calculator from '../../components/Calculator.astro';
+import Brief from '../../components/Brief.astro';
+import Faq from '../../components/Faq.astro';
+import Img from '../../components/Img.astro';
+import { PRODUCTS } from '../../data/catalogue';
+import { FAQ_CHAUME, FAQ_COMMANDE } from '../../data/faq';
+import { faqLd, itemListLd } from '../../lib/seo';
+import { u } from '../../lib/url';
+const path = '/tuiles-de-chaume/';
+const faq = [FAQ_COMMANDE[1], FAQ_CHAUME[0], FAQ_CHAUME[5], FAQ_CHAUME[6], FAQ_COMMANDE[4]];
+---
+<Base title="Tuiles de chaume pour paillote : vente en ligne | SEREPI" description="Tuiles de chaume en roseau d’Afrique du Sud, 80 × 42 cm, à l’unité dès 23 € HT et 19 € HT dès 12 tuiles. Cônes de faîtage, tuiles d’angle. Expédition sous 8 jours." path={path} pageType="CollectionPage" crumbs={[{ name: 'Tuiles de chaume', path }]} ld={[itemListLd(path, PRODUCTS.map((p) => ({ name: p.name, path: `/tuiles-de-chaume/${p.slug}/` }))), faqLd(faq)]}>
+  <PageHead crumbs={[{ name: 'Tuiles de chaume', path }]} kicker="Boutique en ligne" title="Tuiles de chaume pour paillote" lead="Des tuiles de chaume naturel, en roseau d’Afrique du Sud, pour couvrir ou renouveler le toit de toute paillote, SEREPI ou non. Vendues à l’unité, avec un prix dégressif dès 12 tuiles, et expédiées sous 8 jours.">
+    <Brief items={[
+      'Tuile standard 80 × 42 cm, 5 cm d’épaisseur : 23 € HT l’unité, 19 € HT dès 12 tuiles',
+      'Environ 4 tuiles par m² de toiture ; une paillote Bora demande 8 tuiles et 1 cône',
+      'Fixation par crochets en nylon, clous ou agrafes, sur toute structure',
+      'Expédition sous 8 jours sur palette filmée, France entière',
+    ]} />
+  </PageHead>
+  <section class="sec tight" style="padding-top:12px"><div class="wrap"><div class="prods">{PRODUCTS.map((p) => <ProductCard p={p} level="h2" />)}</div>
+    <p class="small muted" style="margin-top:18px">Particuliers : prix TTC. Professionnels : choisissez « Pro » en haut de page pour afficher les prix hors taxes.</p></div></section>
+  <section class="sec creme"><div class="wrap"><Calculator heading="h2" /></div></section>
+  <section class="sec"><div class="wrap two">
+    <div class="prose">
+      <span class="sc">Le matériau</span>
+      <h2 class="t">Un chaume naturel, prêt à poser</h2>
+      <p>Chaque tuile est un panneau de tiges de roseau d’Afrique du Sud, de la variété Thamnochortus, liées entre elles par une capsule en polyuréthane renforcée d’une maille nylon. Le panneau reste souple : il épouse la forme du toit, qu’il soit rond, à pans ou à deux versants.</p>
+      <p>Les tuiles se posent par rangées, du bas vers le haut, en se recouvrant. Une pente de 30° à 40° assure le meilleur écoulement de l’eau. Le sommet se coiffe d’un cône de faîtage sur les toits ronds, de faîtières en V sur les toits à deux pans.</p>
+      <p><a href={u('/conseils/poser-des-tuiles-de-chaume/')}>Lire le guide de pose</a> · <a href={u('/conseils/chaume-naturel-roseau-afrique-du-sud/')}>Tout savoir sur le chaume</a></p>
+    </div>
+    <figure class="figure"><Img name="tuile-de-chaume-standard" alt="Tuile de chaume standard en roseau, 80 × 42 cm" sizes="(max-width:900px) 100vw, 45vw" /><figcaption>Tuile de chaume standard, 80 × 42 cm · photo SEREPI</figcaption></figure>
+  </div></section>
+  <section class="sec creme"><div class="wrap narrow"><h2 class="t">Questions sur les tuiles</h2><Faq items={faq} open /></div></section>
+</Base>

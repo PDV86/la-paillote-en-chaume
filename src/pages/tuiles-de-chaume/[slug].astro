@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Img from '../../components/Img.astro';
+import Faq from '../../components/Faq.astro';
+import { PRODUCTS, ttc, eur, type Product } from '../../data/catalogue';
+import { productLd, faqLd } from '../../lib/seo';
+import { rich, plain } from '../../lib/text';
+import { u } from '../../lib/url';
+import { IMAGES } from '../../data/images';
+
+export function getStaticPaths() { return PRODUCTS.map((p) => ({ params: { slug: p.slug }, props: { p } })); }
+const { p } = Astro.props as { p: Product };
+const path = `/tuiles-de-chaume/${p.slug}/`;
+const crumbs = [{ name: 'Tuiles de chaume', path: '/tuiles-de-chaume/' }, { name: p.name, path }];
+const priceTxt = p.unitHT != null ? (p.tier ? `${eur(p.unitHT)} HT l’unité, ${eur(p.tier.unitHT)} HT dès ${p.tier.min}` : `${eur(p.unitHT)} HT l’unité`) : 'prix sur demande';
+const description = `${p.name} en roseau d’Afrique du Sud, ${p.spec.replace(' · ', ', ')} : ${priceTxt}. ${p.short.replace(/\.$/, '')}, expédition sous 8 jours.`.slice(0, 160);
+const title = `${p.name} ${p.spec.split(' · ')[0]} | SEREPI`;
+const others = PRODUCTS.filter((x) => x.id !== p.id);
+const pct = p.tier && p.unitHT ? Math.round((1 - p.tier.unitHT / p.unitHT) * 100) : 0;
+const img = p.image ? `/images/${p.image}-${IMAGES[p.image].widths[IMAGES[p.image].widths.length - 1]}.webp` : undefined;
+const ld: object[] = [productLd(p, path)];
+if (p.faq.length) ld.push(faqLd(p.faq));
+---
+<Base title={title} description={description} path={path} pageType="ItemPage" crumbs={crumbs} image={img} ld={ld}>
+  <div class="wrap" style="padding-top:28px"><Breadcrumbs crumbs={crumbs} /></div>
+  <section class="sec tight" style="padding-top:24px"><div class="wrap pdp">
+    <div class="pic">{p.image ? <Img name={p.image} alt={p.alt} eager sizes="(max-width:860px) 100vw, 50vw" /> : <span class="muted">Photo à venir</span>}</div>
+    <div>
+      <span class="sc">Tuiles de chaume · roseau d’Afrique du Sud</span>
+      <h1 class="t" style="margin:10px 0 12px">{p.name}</h1>
+      <p class="lead">{p.short}</p>
+      <div class="buy" data-buy data-tier-for={p.id}>
+        {p.unitHT != null ? (
+          <>
+            <div class="price"><b data-ht={p.unitHT} data-per={p.per}>{eur(ttc(p.unitHT))} TTC · {p.per}</b><span data-ht-alt={p.unitHT}>soit {eur(p.unitHT)} HT</span></div>
+            {p.tier && <div class="tier"><span>Dès {p.tier.min} tuiles, pour toute la commande&#160;:</span><b data-ht-short={p.tier.unitHT}>{eur(ttc(p.tier.unitHT))} TTC</b><i>−{pct}&#160;%</i></div>}
+            <div class="row">
+              <div class="qty"><button type="button" data-step="-1" aria-label="Moins">−</button><input type="number" min="1" max="999" value={p.tier ? p.tier.min : 1} aria-label="Quantité" inputmode="numeric" /><button type="button" data-step="1" aria-label="Plus">+</button></div>
+              <button type="button" class="btn solid" data-add={p.id}>Ajouter au panier</button>
+            </div>
+            {p.tier && <p class="small muted" style="margin-top:10px" data-line-total></p>}
+            <p class="added" data-added></p>
+            <p class="small muted">{p.pack} · Expédition sous 8 jours sur palette filmée · Livraison <span class="todo">[À VALIDER : grille]</span></p>
+          </>
+        ) : (
+          <>
+            <div class="price"><span set:html={rich(p.priceTodo || 'Prix sur demande')} /></div>
+            <a class="btn solid" href={u('/devis/')}>Demander un prix</a>
+          </>
+        )}
+      </div>
+      <div class="prose">
+        <p>{p.intro}</p>
+        <ul>{p.details.map((d) => <li>{d}</li>)}</ul>
+        <p set:html={rich(p.usage)} />
+      </div>
+      <h2 class="t" style="font-size:20px;margin:32px 0 12px">Caractéristiques</h2>
+      <table class="specs"><tbody>{p.specs.map(([k, v]) => <tr><th scope="row">{k}</th><td set:html={rich(v)} /></tr>)}</tbody></table>
+      <p class="small" style="margin-top:18px"><a class="arrow" href={u('/conseils/poser-des-tuiles-de-chaume/')}>Comment poser les tuiles</a></p>
+    </div>
+  </div></section>
+  {p.faq.length > 0 && <section class="sec creme"><div class="wrap narrow"><h2 class="t">Questions fréquentes</h2><Faq items={p.faq} open /></div></section>}
+  <section class="sec"><div class="wrap"><h2 class="t">Les autres pièces</h2><div class="prods three">{others.map((o) => <ProductCard p={o} />)}</div></div></section>
+</Base>
