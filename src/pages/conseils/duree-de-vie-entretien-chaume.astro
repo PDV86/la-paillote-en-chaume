@@ -1,0 +1,24 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import { FAQ_CHAUME } from '../../data/faq';
+import { u } from '../../lib/url';
+---
+<Guide slug="duree-de-vie-entretien-chaume" title="Durée de vie et entretien d’un toit de paillote en chaume | SEREPI" h1="Durée de vie et entretien d’un toit en chaume" description="Un toit de paillote en tuiles de chaume dure 8 à 12 ans selon le climat, plus de 12 ans au soleil. Sans entretien ; l’hivernage le prolonge. Le guide SEREPI."
+  lead="Une couverture en tuiles de chaume dure de 8 à 12 ans selon le climat : plus de 12 ans dans les régions ensoleillées ou les endroits abrités, plutôt 6 à 12 ans en climat tempéré. Elle ne demande pas d’entretien, et démonter les tuiles l’hiver la fait durer plus longtemps."
+  brief={['8 à 12 ans en moyenne selon le climat', 'Plus de 12 ans au soleil ou à l’abri, 6 à 12 ans en climat tempéré', 'Aucun entretien nécessaire', 'Hivernage : démonter les tuiles en hiver, les remettre au printemps']}
+  faq={[FAQ_CHAUME[2], FAQ_CHAUME[4], FAQ_CHAUME[3]]}>
+  <h2 class="t">Combien de temps dure le chaume ?</h2>
+  <p>La durée de vie dépend surtout de l’humidité :</p>
+  <ul>
+    <li><strong>Régions ensoleillées et endroits abrités</strong> : 12 ans et plus.</li>
+    <li><strong>Climat tempéré et humide</strong> : de 6 à 12 ans.</li>
+  </ul>
+  <p>Une pente de 30° à 40° favorise l’écoulement de l’eau et donc la durée de vie de la couverture.</p>
+  <h2 class="t">Quel entretien ?</h2>
+  <p>Aucun. La couverture en tuiles de roseau ne demande pas d’entretien particulier.</p>
+  <p>Pour la faire durer plus longtemps, vous pouvez démonter les tuiles avant l’hiver, les stocker au sec et les remettre au printemps. La pose comme la dépose sont simples : les tuiles s’accrochent et se décrochent une à une.</p>
+  <h2 class="t">La structure dure, le chaume se change</h2>
+  <p>Une paillote une fois installée ne bouge plus : la structure en acier ou en aluminium et les mâts en pin traité autoclave classe 4 sont faits pour durer. Seule la couverture en chaume, comme tout revêtement, se remplace au bout de quelques années.</p>
+  <p>Le renouvellement est simple et peu coûteux : on retire les anciennes tuiles et on pose les neuves sur la même structure. Pour une Bora, il faut 8 tuiles et 1 cône de faîtage.</p>
+  <p><a href={u('/renouvellement-chaume/')}>Renouveler le chaume de ma paillote</a></p>
+</Guide>

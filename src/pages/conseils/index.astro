@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import Img from '../../components/Img.astro';
+import { GUIDES } from '../../data/guides';
+import { itemListLd } from '../../lib/seo';
+import { u } from '../../lib/url';
+const path = '/conseils/';
+---
+<Base title="Conseils et guides sur le chaume et les paillotes | SEREPI" description="Combien de tuiles de chaume, comment les poser, combien de temps dure le chaume, quel roseau choisir : les guides pratiques de SEREPI pour votre paillote." path={path} pageType="CollectionPage" crumbs={[{ name: 'Conseils', path }]} ld={[itemListLd(path, GUIDES.map((g) => ({ name: g.title, path: `/conseils/${g.slug}/` })))]}>
+  <PageHead crumbs={[{ name: 'Conseils', path }]} kicker="Conseils et guides" title="Bien choisir, poser et entretenir son chaume" lead="Les réponses pratiques de SEREPI, fournisseur de paillotes et de tuiles de chaume depuis une vingtaine d’années, pour couvrir ou renouveler votre paillote." />
+  <section class="sec tight" style="padding-top:8px"><div class="wrap grid2">
+    {GUIDES.map((g) => <a class="card link" href={u(`/conseils/${g.slug}/`)}><Img name={g.img} alt={g.title} sizes="(max-width:760px) 100vw, 45vw" style="aspect-ratio:16/9;object-fit:cover" /><h2 class="t" style="font-size:20px;margin:0">{g.title}</h2><p class="muted">{g.short}</p><span class="arrow">Lire le guide</span></a>)}
+  </div></section>
+</Base>

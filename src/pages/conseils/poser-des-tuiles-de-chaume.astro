@@ -1,0 +1,29 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import { FAQ_CHAUME } from '../../data/faq';
+import { u, pdf } from '../../lib/url';
+const steps = [
+  { name: 'Préparer les tuiles', text: 'Ouvrez les cartons et présentez chaque tuile attaches vers le haut : les crochets en nylon se trouvent en partie haute.' },
+  { name: 'Poser la première rangée', text: 'Fixez les tuiles sur le cercle métallique le plus bas de la structure, par les attaches prévues en haut de chaque tuile.' },
+  { name: 'Ajuster la fin de rangée', text: 'Pour la dernière tuile de la rangée, coupez l’excédent au couteau en gardant l’attache. Évitez de serrer deux tuiles l’une contre l’autre : cela forme des bosses.' },
+  { name: 'Monter rangée par rangée', text: 'Posez les rangées suivantes de la même façon, du bas vers le haut, chacune recouvrant la précédente, en recoupant les dépassements.' },
+  { name: 'Poser la dernière rangée', text: 'La dernière rangée se pose comme les autres et se termine de la même façon.' },
+  { name: 'Coiffer avec le cône de faîtage', text: 'Posez le cône de chaume au sommet de la structure pour tout recouvrir, fixez son intérieur à la structure par des fils, puis ajustez pour qu’aucun jour n’apparaisse entre les tuiles.' },
+];
+---
+<Guide slug="poser-des-tuiles-de-chaume" title="Poser des tuiles de chaume sur une paillote : le guide | SEREPI" h1="Poser des tuiles de chaume, étape par étape" description="Comment poser des tuiles de chaume sur une paillote : rangées du bas vers le haut, crochets en nylon, découpe en fin de rangée, cône de faîtage. Le guide SEREPI."
+  lead="Les tuiles de chaume se posent par rangées, du bas vers le haut, chacune recouvrant la précédente. Elles s’accrochent à la structure par des crochets en nylon, et un cône de faîtage coiffe le sommet. Aucune compétence particulière n’est nécessaire."
+  brief={['Pose du bas vers le haut, rangées qui se recouvrent', 'Fixation par crochets en nylon, ou clous et agrafes sur du bois', 'Pente conseillée : 30° à 40°', 'Outils : un couteau pour recouper, du fil pour fixer le cône']}
+  faq={[FAQ_CHAUME[6], FAQ_CHAUME[5], FAQ_CHAUME[0]]}
+  howto={{ name: 'Poser des tuiles de chaume sur une paillote', description: 'La mise en place du chaume sur une structure de paillote, de la première rangée au cône de faîtage.', steps, supply: ['Tuiles de chaume standard', 'Cône de faîtage', 'Fil de fixation'], tool: ['Couteau'] }}>
+  <h2 class="t">Avant de commencer</h2>
+  <p>Vérifiez la pente du toit : une inclinaison comprise entre 30° et 40° par rapport au sol garantit le meilleur écoulement de l’eau. Comptez les pièces avec le <a href={u('/calculateur-tuiles-de-chaume/')}>calculateur</a> : tuiles standard, cône de faîtage, et tuiles d’angle ou faîtières selon la forme du toit.</p>
+  <p>Sur une structure de paillote métallique, les tuiles s’accrochent par leurs crochets en nylon. Sur une charpente en bois, elles peuvent aussi être clouées ou agrafées.</p>
+  <h2 class="t">Les six étapes de la pose</h2>
+  <ol class="steps" style="list-style:none;padding:0">{steps.map((s, i) => <li id={`etape-${i + 1}`}><b>{s.name}</b>{s.text}</li>)}</ol>
+  <p><span class="todo">[À VALIDER : dernière rangée en tuiles plus denses, repérées par des attaches blanches, comme dans l’ancienne notice ?]</span></p>
+  <h2 class="t">Renouveler un chaume existant</h2>
+  <p>Pour changer un chaume usé, retirez les anciennes tuiles et le cône : la structure reste en place. Posez ensuite les tuiles neuves en suivant les mêmes étapes. Voir <a href={u('/renouvellement-chaume/')}>le renouvellement du chaume</a>.</p>
+  <h2 class="t">La notice d’origine</h2>
+  <p>Ce guide reprend la notice SEREPI de mise en place du chaume, à télécharger en <a href={pdf('chaume.pdf')}>PDF</a>. Les notices de montage de chaque modèle sont sur la page <a href={u('/notices-de-montage/')}>notices de montage</a>.</p>
+</Guide>

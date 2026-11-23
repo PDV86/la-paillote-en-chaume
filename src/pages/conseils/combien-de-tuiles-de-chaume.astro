@@ -1,0 +1,32 @@
+---
+import Guide from '../../layouts/Guide.astro';
+import { FAQ_CHAUME, FAQ_COMMANDE } from '../../data/faq';
+import { u } from '../../lib/url';
+---
+<Guide slug="combien-de-tuiles-de-chaume" title="Combien de tuiles de chaume pour une paillote ? | SEREPI" h1="Combien de tuiles de chaume pour une paillote ?" description="Une paillote Bora de 2 m demande 8 tuiles de chaume et 1 cône de faîtage. Pour un autre toit, comptez environ 4 tuiles par m² de toiture en pente."
+  lead="Une paillote Bora de 2 mètres de diamètre demande 8 tuiles de chaume standard et 1 cône de faîtage. Pour un autre toit, la quantité se déduit de la surface de toiture mesurée en pente : environ 4 tuiles par m²."
+  brief={['Bora (Ø 2 m) : 8 tuiles standard + 1 cône de faîtage', 'Règle générale : environ 4 tuiles par m² de toiture [À VALIDER : règle]', 'Mesurez le toit en pente, pas la surface au sol', 'Prix dégressif : 19 € HT la tuile dès 12 tuiles']}
+  faq={[FAQ_CHAUME[1], FAQ_COMMANDE[1], FAQ_CHAUME[0]]}>
+  <h2 class="t">Les quantités par modèle</h2>
+  <p>Pour une paillote SEREPI, le plus simple est de partir du modèle :</p>
+  <ul>
+    <li><strong>Bora, Ø 2,00 m</strong> : 8 tuiles standard et 1 cône de faîtage.</li>
+    <li><strong>Moorea, Ø 2,80 m</strong> : <span class="todo">[À COMPLÉTER : nombre de tuiles]</span> et 1 cône de faîtage.</li>
+    <li><strong>Acapulco, Ø 3,80 m</strong> : <span class="todo">[À COMPLÉTER : nombre de tuiles, tuiles d’angle]</span></li>
+  </ul>
+  <p>Le <a href={u('/calculateur-tuiles-de-chaume/')}>calculateur</a> donne directement la quantité et le prix pour chaque modèle.</p>
+  <h2 class="t">Pour un autre toit : la règle au m²</h2>
+  <p>Une tuile standard mesure 80 × 42 cm. Une fois posées en rangées qui se recouvrent, il faut compter environ 4 tuiles par m² de toiture. <span class="todo">[À VALIDER : règle]</span></p>
+  <p>La surface à prendre en compte est celle du toit lui-même, dans sa pente, et non l’emprise au sol : un toit incliné est toujours plus grand que la surface qu’il abrite. Pour un toit à plusieurs pans, additionnez la surface de chaque pan.</p>
+  <p>La dernière tuile de chaque rangée se recoupe au couteau pour ajuster la longueur : arrondissez toujours au nombre entier supérieur.</p>
+  <h2 class="t">Les pièces de finition</h2>
+  <ul>
+    <li><strong>Toit rond ou conique</strong> : un <a href={u('/tuiles-de-chaume/cone-de-faitage/')}>cône de faîtage</a> coiffe le sommet.</li>
+    <li><strong>Toit à plusieurs pans</strong> : des <a href={u('/tuiles-de-chaume/tuile-d-angle/')}>tuiles d’angle</a> couvrent les arêtes, et un cône le sommet.</li>
+    <li><strong>Toit à deux pans</strong> : des <a href={u('/tuiles-de-chaume/faitiere-en-v/')}>faîtières en V</a> couvrent la ligne de faîtage.</li>
+  </ul>
+  <p><span class="todo">[À VALIDER : règles de pose par type de toit]</span></p>
+  <h2 class="t">Et le prix ?</h2>
+  <p>La tuile standard coûte 23 € HT l’unité en dessous de 12 tuiles, puis 19 € HT à partir de 12 tuiles, pour toute la commande. Le cône de faîtage coûte 65 € HT. Le chaume d’une Bora revient ainsi à 8 × 23 € + 65 €, soit 249 € HT (298,80 € TTC), hors frais de port.</p>
+  <p>En cas de doute, envoyez-nous une photo et les dimensions de votre paillote avec une <a href={u('/devis/')}>demande de devis</a>.</p>
+</Guide>
