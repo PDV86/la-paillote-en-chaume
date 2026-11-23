@@ -51,11 +51,17 @@ function add(id: string, qty: number) {
   save();
 }
 function setQty(id: string, qty: number) { cart = cart.map((l) => (l.id === id ? { ...l, qty: Math.max(0, Math.min(999, Math.round(qty))) } : l)).filter((l) => l.qty > 0); save(); }
+// Palier de la tuile standard, calculé sur le total de tuiles standard du panier.
+// On n'affiche le bouton « Passer à 12 » que si 12 tuiles coûtent moins cher que la quantité actuelle ; sinon, simple information.
 function nudge(): string {
   const t = cart.find((l) => l.id === 'tuile'); const p = P.tuile;
-  if (!t || !p?.tier || t.qty >= p.tier.min) return t && p?.tier ? `<p class="nudge">Prix dégressif appliqué : <b>${mode === 'pro' ? fmt(p.tier.unitHT) + ' HT' : fmt(ttc(p.tier.unitHT)) + ' TTC'}</b> la tuile dès ${p.tier.min} tuiles.</p>` : '';
-  const miss = p.tier.min - t.qty;
-  return `<p class="nudge">Plus que <b>${miss} tuile${miss > 1 ? 's' : ''}</b> pour passer à ${mode === 'pro' ? fmt(p.tier.unitHT) + ' HT' : fmt(ttc(p.tier.unitHT)) + ' TTC'} la tuile (au lieu de ${mode === 'pro' ? fmt(p.unitHT!) + ' HT' : fmt(ttc(p.unitHT!)) + ' TTC'}). <button type="button" class="rm" data-cart-fill>Passer à ${p.tier.min} tuiles</button></p>`;
+  if (!t || !p?.tier || p.unitHT == null) return '';
+  const show = (ht: number) => (mode === 'pro' ? fmt(ht) + ' HT' : fmt(ttc(ht)) + ' TTC');
+  const min = p.tier.min;
+  if (t.qty >= min) return `<p class="nudge">Tarif dégressif appliqué : <b>${show(p.tier.unitHT)}</b> la tuile à partir de ${min} tuiles.</p>`;
+  const now = p.unitHT * t.qty; const at = p.tier.unitHT * min;
+  if (at < now) return `<div class="nudge"><p><b>Tarif dégressif dès ${min} tuiles.</b> ${min} tuiles coûtent ${show(at)}, contre ${show(now)} pour vos ${t.qty} tuiles : ${show(now - at)} de moins, avec ${min - t.qty} tuile${min - t.qty > 1 ? 's' : ''} de plus.</p><button type="button" class="btn line sm" data-cart-fill>Passer à ${min} tuiles</button></div>`;
+  return `<p class="nudge">Tarif dégressif dès ${min} tuiles dans la commande : ${show(p.tier.unitHT)} la tuile au lieu de ${show(p.unitHT)}.</p>`;
 }
 function linesHTML(): string {
   if (!cart.length) return `<p class="empty">Votre panier est vide. <a href="${DATA.base}tuiles-de-chaume/">Voir les tuiles de chaume</a></p>`;
@@ -136,10 +142,10 @@ function renderCalc() {
     if (s.mode === 'model') {
       const m = models.find((x) => x.id === s.model);
       if (m && m.tiles) { tiles = m.tiles; note = `${m.name} : ${m.tiles} tuiles et ${m.cones} cône de faîtage.`; }
-      else note = m ? `${m.name} : ${todo('[À COMPLÉTER : nombre de tuiles]')} Envoyez-nous une demande, nous vous indiquons la quantité.` : 'Autre modèle : indiquez la surface de toiture, ou envoyez-nous une photo avec une demande de devis.';
+      else note = m ? `${m.name} : ${todo('[À COMPLÉTER : nombre de tuiles]')} <a href="${DATA.base}devis/">Envoyez-nous une demande</a>, nous vous indiquons la quantité.` : `Autre modèle : choisissez « La surface du toit » ci-dessus, ou <a href="${DATA.base}devis/">envoyez-nous une photo de la paillote</a> pour un compte exact.`;
     } else {
       const v = Number(($<HTMLInputElement>('[data-calc-surface]', root)!).value.replace(',', '.'));
-      if (v > 0) { tiles = Math.ceil(v * 4); note = `${v.toLocaleString('fr-FR')} m² × 4 tuiles par m² = ${tiles} tuiles ${todo('[À VALIDER : règle]')}`; } else note = 'Indiquez une surface supérieure à 0 m².';
+      if (v > 0) { tiles = Math.ceil(v * 4); note = `Estimation : ${v.toLocaleString('fr-FR')} m² × 4 tuiles par m² = ${tiles} tuiles ${todo('[À VALIDER : règle]')}. <a href="${DATA.base}devis/">Faire vérifier ma toiture</a>`; } else note = 'Indiquez une surface supérieure à 0 m².';
     }
     const out = $('[data-calc-out]', root)!;
     const cone = P.cone; const tile = P.tuile;
@@ -149,7 +155,11 @@ function renderCalc() {
     const show = (n: number) => (mode === 'pro' ? fmt(n) + ' HT' : fmt(ttc(n)) + ' TTC');
     out.innerHTML = `<p class="small">${note}</p>` +
       (tiles ? `<div class="line"><span>${tiles} tuile${tiles > 1 ? 's' : ''} standard × ${show(tu)}</span><b>${show(tu * tiles)}</b></div>` : '') +
-      (tiles && tile.tier && tiles < tile.tier.min ? `<p class="nudge">Dès ${tile.tier.min} tuiles : ${show(tile.tier.unitHT)} la tuile.</p>` : '') +
+      (tiles && tile.tier && tiles < tile.tier.min
+        ? (tile.tier.unitHT * tile.tier.min < tu * tiles
+          ? `<p class="nudge">${tile.tier.min} tuiles coûtent ${show(tile.tier.unitHT * tile.tier.min)} : ${show(tu * tiles - tile.tier.unitHT * tile.tier.min)} de moins que ${tiles} tuiles.</p>`
+          : `<p class="nudge">Dès ${tile.tier.min} tuiles dans la commande : ${show(tile.tier.unitHT)} la tuile.</p>`)
+        : '') +
       (tiles && tile.tier && tiles >= tile.tier.min ? `<p class="nudge">Prix dégressif appliqué dès ${tile.tier.min} tuiles.</p>` : '') +
       (cones ? `<div class="line"><span>${cones} cône de faîtage Ø 85 cm</span><b>${show((cone.unitHT ?? 0) * cones)}</b></div>` : '') +
       `<div class="line total"><span>Total ${mode === 'pro' ? 'HT' : 'TTC'}</span><b>${show(ht)}</b></div><p class="small muted">${mode === 'pro' ? 'soit ' + fmt(ttc(ht)) + ' TTC' : 'soit ' + fmt(ht) + ' HT'}, livraison en sus ${todo('[À VALIDER : grille]')}</p>`;
