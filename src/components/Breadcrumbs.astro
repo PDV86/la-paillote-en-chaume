@@ -1,0 +1,10 @@
+---
+import { u } from '../lib/url';
+import type { Crumb } from '../lib/seo';
+interface Props { crumbs: Crumb[] }
+const { crumbs } = Astro.props;
+const all = [{ name: 'Accueil', path: '/' }, ...crumbs];
+---
+<nav aria-label="Fil d’Ariane"><ol class="crumbs">
+  {all.map((c, i) => <li>{i < all.length - 1 ? <a href={u(c.path)}>{c.name}</a> : <span aria-current="page">{c.name}</span>}</li>)}
+</ol></nav>

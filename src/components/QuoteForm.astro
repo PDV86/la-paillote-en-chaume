@@ -1,0 +1,47 @@
+---
+import { MODELS } from '../data/catalogue';
+import { SITE } from '../data/site';
+import { u } from '../lib/url';
+interface Props { full?: boolean }
+const { full = true } = Astro.props;
+---
+<div>
+  <form class="form" data-form action={u('/api/devis.php')} method="post" enctype="multipart/form-data" novalidate>
+    <fieldset class="field"><legend>Votre projet *</legend>
+      <div class="choices">
+        <label><input type="radio" name="projet" value="renouvellement" required checked /> Renouveler mon chaume</label>
+        <label><input type="radio" name="projet" value="bora" /> Une paillote Bora complète</label>
+        <label><input type="radio" name="projet" value="volume" /> Paillotes en volume (4 et plus)</label>
+        <label><input type="radio" name="projet" value="question" /> Une question</label>
+      </div>
+    </fieldset>
+    <fieldset class="field"><legend>Vous êtes *</legend>
+      <div class="choices">
+        <label><input type="radio" name="profil" value="particulier" required checked /> Un particulier</label>
+        <label><input type="radio" name="profil" value="professionnel" /> Un professionnel</label>
+      </div>
+    </fieldset>
+    {full && (
+      <div class="row2">
+        <div class="field"><label for="q-modele">Modèle de paillote</label><select id="q-modele" name="modele"><option value="">Je ne sais pas</option>{MODELS.map((m) => <option value={m.id}>{m.name} · Ø {m.diam}</option>)}<option value="autre">Autre modèle ou autre marque</option></select></div>
+        <div class="field"><label for="q-qte">Nombre de paillotes</label><input id="q-qte" name="quantite" type="number" min="1" value="1" inputmode="numeric" /></div>
+      </div>
+    )}
+    <div class="row2">
+      <div class="field"><label for="q-nom">Nom et prénom *</label><input id="q-nom" name="nom" autocomplete="name" required /></div>
+      <div class="field"><label for="q-ste">Établissement (professionnels)</label><input id="q-ste" name="societe" autocomplete="organization" /></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="q-mail">E-mail *</label><input id="q-mail" name="email" type="email" autocomplete="email" required /></div>
+      <div class="field"><label for="q-tel">Téléphone</label><input id="q-tel" name="telephone" type="tel" autocomplete="tel" /></div>
+    </div>
+    <div class="field" style="max-width:240px"><label for="q-cp">Code postal de livraison *</label><input id="q-cp" name="cp" required pattern="[0-9]{5}" inputmode="numeric" autocomplete="postal-code" /></div>
+    <div class="field"><label for="q-msg">Votre message</label><textarea id="q-msg" name="message" placeholder="Dimensions, état du chaume, délai souhaité…"></textarea></div>
+    {full && <div class="field"><label for="q-photos">Photos de votre paillote (facultatif)</label><input id="q-photos" name="photos[]" type="file" accept="image/*" multiple /><span class="small muted">Elles nous aident à identifier le modèle et l’état du chaume.</span></div>}
+    <label class="check"><input type="checkbox" name="rgpd" value="1" required /> <span>J’accepte que SEREPI utilise ces informations pour répondre à ma demande. <a href={u('/confidentialite/')}>Confidentialité</a></span></label>
+    <input type="text" name="site_web" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+    <p class="err" data-err role="alert"></p>
+    <div><button type="submit" class="btn solid">Envoyer ma demande</button></div>
+  </form>
+  <div class="ok" data-ok hidden role="status"><b>Demande envoyée.</b> SEREPI vous répond sous <span class="todo">{SITE.responseTime}</span>. Pour une question urgente : <a href={`tel:${SITE.telIntl}`}>{SITE.tel}</a>.</div>
+</div>

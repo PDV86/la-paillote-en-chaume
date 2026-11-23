@@ -1,0 +1,27 @@
+---
+import Logo from './Logo.astro';
+import { SITE, FOOTER_LINKS } from '../data/site';
+import { u } from '../lib/url';
+import { rich } from '../lib/text';
+const half = Math.ceil(FOOTER_LINKS.length / 2);
+---
+<footer class="ftr">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <Logo />
+        <p style="margin-top:16px;max-width:380px">SEREPI fournit {SITE.since} des paillotes en chaume à monter soi-même et les tuiles de chaume naturel pour renouveler toute paillote. Vente en ligne aux particuliers et aux professionnels.</p>
+        <p style="margin-top:14px"><a href={`tel:${SITE.telIntl}`}>{SITE.tel}</a><br />{SITE.area}</p>
+        <p class="small" style="margin-top:8px" set:html={rich(`Réponse sous ${SITE.responseTime}`)} />
+      </div>
+      <div><h2>Le site</h2><ul>{FOOTER_LINKS.slice(0, half).map((l) => <li><a href={u(l.path)}>{l.label}</a></li>)}</ul></div>
+      <div><h2>Aide</h2><ul>{FOOTER_LINKS.slice(half).map((l) => <li><a href={u(l.path)}>{l.label}</a></li>)}</ul></div>
+    </div>
+    <div class="legal">
+      <span>© SEREPI · La paillote en chaume</span>
+      <a href={u('/mentions-legales/')}>Mentions légales</a>
+      <a href={u('/cgv/')}>Conditions générales de vente</a>
+      <a href={u('/confidentialite/')}>Confidentialité</a>
+    </div>
+  </div>
+</footer>

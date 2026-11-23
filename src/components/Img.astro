@@ -1,0 +1,11 @@
+---
+import { IMAGES } from '../data/images';
+import { u } from '../lib/url';
+interface Props { name: string; alt: string; sizes?: string; class?: string; eager?: boolean; style?: string }
+const { name, alt, sizes = '100vw', class: cls, eager = false, style } = Astro.props;
+const m = IMAGES[name];
+if (!m) throw new Error(`Image inconnue : ${name}`);
+const src = (w: number) => u(`/images/${name}-${w}.webp`);
+const mid = m.widths.find((w) => w >= 900) ?? m.widths[m.widths.length - 1];
+---
+<img src={src(mid)} srcset={m.widths.map((w) => `${src(w)} ${w}w`).join(', ')} sizes={sizes} width={m.w} height={m.h} alt={alt} class={cls} style={style} loading={eager ? 'eager' : 'lazy'} decoding={eager ? 'sync' : 'async'} fetchpriority={eager ? 'high' : undefined} />

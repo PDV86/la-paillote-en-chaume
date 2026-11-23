@@ -1,0 +1,16 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+import type { Crumb } from '../lib/seo';
+import { rich } from '../lib/text';
+interface Props { crumbs: Crumb[]; kicker?: string; title: string; lead?: string; updated?: string }
+const { crumbs, kicker, title, lead, updated } = Astro.props;
+const d = updated ? new Date(updated).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+---
+<header class="pagehead wrap">
+  <Breadcrumbs crumbs={crumbs} />
+  {kicker && <span class="sc" style="margin-top:22px">{kicker}</span>}
+  <h1 class="t">{title}</h1>
+  {lead && <p class="lead" set:html={rich(lead)} />}
+  {d && <p class="small muted" style="margin-top:10px">Mis à jour le <time datetime={updated}>{d}</time></p>}
+  <slot />
+</header>

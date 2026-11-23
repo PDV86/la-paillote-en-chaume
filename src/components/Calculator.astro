@@ -1,0 +1,30 @@
+---
+import { MODELS, byId, ttc, eur } from '../data/catalogue';
+interface Props { id?: string; heading?: 'h2' | 'h3'; title?: string }
+const { id = 'calculateur', heading = 'h2', title = 'Combien de tuiles pour votre paillote ?' } = Astro.props;
+const H = heading;
+const cone = byId('cone');
+const models = JSON.stringify(MODELS.map((m) => ({ id: m.id, name: m.name, tiles: m.tiles, cones: m.cones })));
+---
+<div class="calc" id={id} data-calc={models}>
+  <div>
+    <H class="t" style="font-size:22px;margin-bottom:14px">{title}</H>
+    <div class="step"><span class="sc">1 · Je connais</span>
+      <div class="seg" role="group" aria-label="Mode de calcul"><button type="button" data-calc-mode="model" aria-pressed="true">Le modèle de ma paillote</button><button type="button" data-calc-mode="surface" aria-pressed="false">La surface du toit</button></div>
+    </div>
+    <div class="step" data-calc-pane="model"><span class="sc">2 · Votre paillote</span>
+      <div class="seg" role="group" aria-label="Modèle">{MODELS.map((m, i) => <button type="button" data-calc-model={m.id} aria-pressed={i === 0 ? 'true' : 'false'}>{m.name} · Ø {m.diam}</button>)}<button type="button" data-calc-model="autre" aria-pressed="false">Autre modèle</button></div>
+    </div>
+    <div class="step" data-calc-pane="surface" hidden><span class="sc">2 · Surface de toiture à couvrir</span>
+      <div class="field" style="max-width:220px"><label for={`${id}-m2`}>Surface en m²</label><input id={`${id}-m2`} type="number" min="0" step="0.5" value="4" inputmode="decimal" data-calc-surface /></div>
+      <p class="hint">Mesurez la toiture elle-même, en pente, et non la surface au sol. Base de calcul : environ 4 tuiles par m² <span class="todo">[À VALIDER : règle]</span></p>
+    </div>
+    <div class="step"><span class="sc">3 · Faîtage</span>
+      <label class="check"><input type="checkbox" checked data-calc-cone /> <span>Ajouter un cône de faîtage Ø 85 cm (<span data-ht-short={cone.unitHT}>{eur(ttc(cone.unitHT!))} TTC</span>)</span></label>
+    </div>
+  </div>
+  <div class="out-col">
+    <div class="out" data-calc-out aria-live="polite"><p class="small">Bora : 8 tuiles et 1 cône de faîtage.</p></div>
+    <button type="button" class="btn gold block" style="margin-top:14px" data-calc-add>Ajouter au panier</button>
+  </div>
+</div>

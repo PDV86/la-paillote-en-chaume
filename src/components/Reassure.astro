@@ -1,0 +1,11 @@
+---
+import { rich } from '../lib/text';
+import { SITE } from '../data/site';
+const items = [
+  ['Expédition sous 8 jours', 'Sur palette filmée, France entière, Corse comprise'],
+  ['Chaume naturel', 'Roseau d’Afrique du Sud, 8 à 12 ans selon le climat'],
+  ['Particuliers et pros', 'Prix TTC ou HT, facture avec TVA, devis en volume'],
+  ['Devis gratuit', `Réponse sous ${SITE.responseTime}`],
+];
+---
+<ul class="reassure">{items.map(([a, b]) => <li><b>{a}</b><span set:html={rich(b)} /></li>)}</ul>

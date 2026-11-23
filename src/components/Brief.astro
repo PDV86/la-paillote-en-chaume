@@ -1,0 +1,6 @@
+---
+import { rich } from '../lib/text';
+interface Props { items: string[]; title?: string }
+const { items, title = 'En bref' } = Astro.props;
+---
+<aside class="brief" aria-label={title}><b class="sc">{title}</b><ul>{items.map((i) => <li set:html={rich(i)} />)}</ul></aside>

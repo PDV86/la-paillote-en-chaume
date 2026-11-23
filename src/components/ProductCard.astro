@@ -1,0 +1,32 @@
+---
+import Img from './Img.astro';
+import type { Product } from '../data/catalogue';
+import { ttc, eur } from '../data/catalogue';
+import { u } from '../lib/url';
+import { rich } from '../lib/text';
+interface Props { p: Product; level?: 'h2' | 'h3' }
+const { p, level = 'h3' } = Astro.props;
+const H = level;
+const href = u(`/tuiles-de-chaume/${p.slug}/`);
+const pct = p.tier && p.unitHT ? Math.round((1 - p.tier.unitHT / p.unitHT) * 100) : 0;
+---
+<article class="prod">
+  <div class="pic">{p.image ? <Img name={p.image} alt={p.alt} sizes="(max-width:520px) 90vw, (max-width:1050px) 45vw, 22vw" /> : <span class="small muted">Photo à venir</span>}</div>
+  <H class="t" style="font-size:18px"><a href={href}>{p.name}</a></H>
+  <p class="spec">{p.spec}<br />{p.pack}</p>
+  {p.unitHT != null ? (
+    <>
+      <div class="price"><b data-ht={p.unitHT} data-per={p.per}>{eur(ttc(p.unitHT))} TTC · {p.per}</b><span data-ht-alt={p.unitHT}>soit {eur(p.unitHT)} HT</span></div>
+      {p.tier && <div class="tier"><span>Dès {p.tier.min} tuiles&#160;:</span><b data-ht-short={p.tier.unitHT}>{eur(ttc(p.tier.unitHT))} TTC</b><i>−{pct}&#160;%</i></div>}
+      <div class="actions" data-buy>
+        <div class="qty"><button type="button" data-step="-1" aria-label="Moins">−</button><input type="number" min="1" max="999" value="1" aria-label={`Quantité de ${p.name}`} inputmode="numeric" /><button type="button" data-step="1" aria-label="Plus">+</button></div>
+        <button type="button" class="btn solid sm" data-add={p.id}>Ajouter</button>
+      </div>
+    </>
+  ) : (
+    <>
+      <div class="price"><span set:html={rich(p.priceTodo || 'Prix sur demande')} /></div>
+      <div class="actions"><a class="btn line sm" href={u('/devis/')}>Demander un prix</a></div>
+    </>
+  )}
+</article>
