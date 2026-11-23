@@ -24,7 +24,7 @@ export const FAQ_CHAUME: QA[] = [
 
 export const FAQ_PAILLOTE: QA[] = [
   ['Puis-je monter la paillote moi-même ?', 'Oui. Les paillotes SEREPI sont conçues pour être montées et démontées sans professionnel. Chaque modèle a sa notice de montage.'],
-  ['Les paillotes résistent-elles au vent ?', 'La structure est en acier (Bora) ou en aluminium anodisé (Moorea), sur un mât central en pin traité autoclave classe 4 de forte section. [À VALIDER : résistance au vent annoncée et consignes par vent fort]'],
+  ['En quoi est faite la structure des paillotes ?', 'La structure est en acier pour la Bora, en aluminium anodisé pour la Moorea, sur un mât central en pin traité autoclave classe 4 de forte section. Le chaume se fixe dessus par crochets en nylon.'],
   ['Réalisez-vous des toitures de chaumières ?', 'Non. SEREPI fournit des paillotes en chaume à monter soi-même et les tuiles de chaume pour renouveler toute paillote, quel que soit son modèle.'],
   ['Fabriquez-vous des paillotes sur mesure ?', 'Pas pour le moment. Les pergolas, kiosques et bars sur mesure ne sont pas proposés ; nous fournissons en revanche les tuiles de chaume pour couvrir votre propre structure.'],
 ];
