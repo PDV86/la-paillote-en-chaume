@@ -1,0 +1,7 @@
+---
+// Fiche pratique : les faits essentiels d'une page, présentés comme un catalogue technique.
+import { rich } from '../lib/text';
+interface Props { rows: [string, string][]; label?: string }
+const { rows, label = 'Fiche pratique' } = Astro.props;
+---
+<table class="facts-table"><caption class="sr">{label}</caption><tbody>{rows.map(([k, v]) => <tr><th scope="row">{k}</th><td set:html={rich(v)} /></tr>)}</tbody></table>

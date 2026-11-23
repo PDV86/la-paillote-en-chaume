@@ -1,11 +1,13 @@
 ---
+// Engagements, illustrés par les pictogrammes de la charte SEREPI (version or, 48 px à l'écran).
 import { rich } from '../lib/text';
 import { SITE } from '../data/site';
+import { u } from '../lib/url';
 const items = [
-  ['Expédition sous 8 jours', 'Sur palette filmée, France entière, Corse comprise'],
-  ['Chaume naturel', 'Roseau d’Afrique du Sud, 8 à 12 ans selon le climat'],
-  ['Particuliers et pros', 'Prix TTC ou HT, facture avec TVA, devis en volume'],
-  ['Devis gratuit', `Réponse sous ${SITE.responseTime}`],
+  ['livraison', 'Expédition sous 8 jours', 'Sur palette filmée, France entière, Corse comprise'],
+  ['tuile-de-chaume', 'Chaume naturel', 'Roseau d’Afrique du Sud, 8 à 12 ans selon le climat'],
+  ['renouvellement', 'Toutes marques', 'Des tuiles pour renouveler tout modèle de paillote'],
+  ['devis', 'Devis sur demande', `Paillotes complètes et volumes, réponse sous ${SITE.responseTime}`],
 ];
 ---
-<ul class="reassure">{items.map(([a, b]) => <li><b>{a}</b><span set:html={rich(b)} /></li>)}</ul>
+<ul class="reassure">{items.map(([pic, a, b]) => <li><img src={u(`/images/pictos/${pic}.webp`)} width="48" height="48" alt="" loading="lazy" /><div><b>{a}</b><span set:html={rich(b)} /></div></li>)}</ul>

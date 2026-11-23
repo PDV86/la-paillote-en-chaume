@@ -9,17 +9,17 @@ const models = JSON.stringify(MODELS.map((m) => ({ id: m.id, name: m.name, tiles
 <div class="calc" id={id} data-calc={models}>
   <div>
     <H class="t" style="font-size:22px;margin-bottom:14px">{title}</H>
-    <div class="step"><span class="sc">1 · Je connais</span>
+    <div class="step"><span class="lbl">Je connais</span>
       <div class="seg" role="group" aria-label="Mode de calcul"><button type="button" data-calc-mode="model" aria-pressed="true">Le modèle de ma paillote</button><button type="button" data-calc-mode="surface" aria-pressed="false">La surface du toit</button></div>
     </div>
-    <div class="step" data-calc-pane="model"><span class="sc">2 · Votre paillote</span>
+    <div class="step" data-calc-pane="model"><span class="lbl">Votre paillote</span>
       <div class="seg" role="group" aria-label="Modèle">{MODELS.map((m, i) => <button type="button" data-calc-model={m.id} aria-pressed={i === 0 ? 'true' : 'false'}>{m.name} · Ø {m.diam}</button>)}<button type="button" data-calc-model="autre" aria-pressed="false">Autre modèle</button></div>
     </div>
-    <div class="step" data-calc-pane="surface" hidden><span class="sc">2 · Surface de toiture à couvrir</span>
+    <div class="step" data-calc-pane="surface" hidden><span class="lbl">Surface de toiture à couvrir</span>
       <div class="field" style="max-width:220px"><label for={`${id}-m2`}>Surface en m²</label><input id={`${id}-m2`} type="number" min="0" step="0.5" value="4" inputmode="decimal" data-calc-surface /></div>
       <p class="hint">Mesurez la toiture elle-même, en pente, et non la surface au sol. Base de calcul : environ 4 tuiles par m² <span class="todo">[À VALIDER : règle]</span></p>
     </div>
-    <div class="step"><span class="sc">3 · Faîtage</span>
+    <div class="step"><span class="lbl">Faîtage</span>
       <label class="check"><input type="checkbox" checked data-calc-cone /> <span>Ajouter un cône de faîtage Ø 85 cm (<span data-ht-short={cone.unitHT}>{eur(ttc(cone.unitHT!))} TTC</span>)</span></label>
     </div>
   </div>

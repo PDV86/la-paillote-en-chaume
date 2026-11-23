@@ -3,16 +3,17 @@ import Img from './Img.astro';
 import { WALL } from '../data/realisations';
 import { IMAGES } from '../data/images';
 import { u } from '../lib/url';
-interface Props { limit?: number }
-const { limit } = Astro.props;
-const items = limit ? WALL.slice(0, limit) : WALL;
+interface Props { limit?: number; pick?: string[]; mosaic?: boolean }
+const { limit, pick, mosaic = false } = Astro.props;
+let items = pick ? pick.map((k) => WALL.find((w) => w.img === k)!).filter(Boolean) : WALL;
+if (limit) items = items.slice(0, limit);
 const full = (k: string) => u(`/images/${k}-${IMAGES[k].widths[IMAGES[k].widths.length - 1]}.webp`);
 ---
-<div class="wall" data-lb-group>
-  {items.map((w) => (
+<div class:list={['wall', { mosaic }]} data-lb-group>
+  {items.map((w, i) => (
     <button type="button" class="wcell" data-full={full(w.img)} data-cap={`${w.title} · photo SEREPI`} data-cap-html={`${w.title} · photo SEREPI ${w.todo ? `<span class="todo">${w.todo}</span>` : ''}`}>
-      <Img name={w.img} alt={w.title} sizes="(max-width:560px) 50vw, (max-width:900px) 33vw, 25vw" />
-      <span>{w.title}</span>
+      <Img name={w.img} alt={w.title} sizes={mosaic && i === 0 ? '(max-width:900px) 100vw, 50vw' : '(max-width:560px) 50vw, (max-width:900px) 33vw, 25vw'} />
+      {!mosaic && <span>{w.title}</span>}
     </button>
   ))}
 </div>

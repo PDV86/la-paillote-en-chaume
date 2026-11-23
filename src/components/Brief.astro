@@ -1,6 +1,7 @@
 ---
+// Points clés d'un guide, en tête d'article (réponse directe, utile aux lecteurs pressés et aux assistants IA).
 import { rich } from '../lib/text';
 interface Props { items: string[]; title?: string }
-const { items, title = 'En bref' } = Astro.props;
+const { items, title = 'L’essentiel' } = Astro.props;
 ---
-<aside class="brief" aria-label={title}><b class="sc">{title}</b><ul>{items.map((i) => <li set:html={rich(i)} />)}</ul></aside>
+<div class="keypoints"><p class="kp">{title}</p><ul>{items.map((i) => <li set:html={rich(i)} />)}</ul></div>
