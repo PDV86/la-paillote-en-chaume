@@ -24,7 +24,7 @@ export function orgGraph() {
       name: SITE.brand,
       alternateName: [SITE.name, SITE.company],
       url: SITE.url + '/',
-      logo: { '@type': 'ImageObject', url: abs('/images/logo-512.png'), width: 512, height: 512 },
+      logo: { '@type': 'ImageObject', url: abs('/images/logo-serepi.png'), width: 720, height: 720 },
       image: abs(SITE.ogImage),
       telephone: SITE.telIntl,
       description: 'SEREPI fournit des paillotes en chaume à monter soi-même et vend en ligne des tuiles de chaume naturel (roseau d’Afrique du Sud) pour couvrir ou renouveler tout modèle de paillote. Livraison France entière.',
