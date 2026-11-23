@@ -1,7 +1,12 @@
 ---
+// Logotype officiel « Paillotes en chaume · SEREPI » (dossier Identité visuelle, charte graphique 2026).
+// Fichiers repris tels quels : jamais redessiné ni recomposé. Écran : 120 px de large minimum,
+// en dessous on emploie le symbole seul (symbole-serepi.svg).
 import { u } from '../lib/url';
+interface Props { variant?: 'principal' | 'clair'; width?: number; link?: boolean; eager?: boolean }
+const { variant = 'principal', width = 136, link = true, eager = false } = Astro.props;
+const src = u(variant === 'clair' ? '/images/logo-serepi-clair.svg' : '/images/logo-serepi.svg');
+const height = Math.round((width * 123.5) / 136);
+const img = `<img src="${src}" width="${width}" height="${height}" alt="Paillotes en chaume SEREPI" class="logo-img" loading="${eager ? 'eager' : 'lazy'}" decoding="async" />`;
 ---
-<a href={u('/')} class="logo" aria-label="La paillote en chaume - SEREPI, accueil">
-  <svg viewBox="0 0 64 44" aria-hidden="true"><path class="roof" d="M4 26 L32 6 L60 26" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g class="reed" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="23" x2="12" y2="41"/><line x1="22" y1="16" x2="22" y2="41" opacity=".7"/><line x1="32" y1="11" x2="32" y2="41" opacity=".4"/><line x1="42" y1="16" x2="42" y2="41" opacity=".7"/><line x1="52" y1="23" x2="52" y2="41"/></g></svg>
-  <span><b>La paillote en chaume</b><small>SEREPI</small></span>
-</a>
+{link ? <a href={u('/')} class="logo" aria-label="Paillotes en chaume SEREPI, accueil" set:html={img} /> : <span class="logo" set:html={img} />}

@@ -3,27 +3,47 @@ import Logo from './Logo.astro';
 import { NAV, SITE } from '../data/site';
 import { u } from '../lib/url';
 interface Props { current: string; over?: boolean }
-const { current, over = false } = Astro.props;
+const { current } = Astro.props;
+const left = NAV.slice(0, 3);
+const right = NAV.slice(3);
+const cur = (p: string) => (current.startsWith(p) ? 'page' : undefined);
+const cartIcon = '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+const burgerIcon = '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18M3 16h18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
 ---
 <div class="topline"><div class="wrap">
   <span class="l">Tuiles de chaume {SITE.shipDelay} · France entière, Corse comprise</span>
   <span class="r"><a href={`tel:${SITE.telIntl}`}>{SITE.tel}</a><a class="dv" href={u('/devis/')}>Demander un devis</a>
     <span class="mode" role="group" aria-label="Affichage des prix"><button type="button" data-mode="part" aria-pressed="true" title="Prix TTC">Particulier</button><button type="button" data-mode="pro" aria-pressed="false" title="Prix hors taxes">Pro</button></span></span>
 </div></div>
-<header class:list={['hdr', { over }]} data-hdr>
+<header class="hdr" data-hdr>
   <div class="wrap hdr-in">
-    <Logo />
-    <nav class="mainnav" aria-label="Navigation principale">
-      {NAV.map((n) => <a href={u(n.path)} aria-current={current.startsWith(n.path) ? 'page' : undefined}>{n.label}</a>)}
-    </nav>
-    <div class="tools">
-      <button type="button" class="ibtn" data-open-cart aria-label="Ouvrir le panier"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="cart-count" data-cart-count data-n="0">0</span></button>
-      <button type="button" class="ibtn burger" data-open-menu aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mnav"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18M3 16h18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+    <div class="side l">
+      <button type="button" class="ibtn burger" data-open-menu aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mnav" set:html={burgerIcon} />
+      <nav class="mainnav" aria-label="Navigation principale">{left.map((n) => <a href={u(n.path)} aria-current={cur(n.path)}>{n.label}</a>)}</nav>
+    </div>
+    <Logo width={136} eager />
+    <div class="side r">
+      <nav class="mainnav" aria-label="Navigation principale (suite)">{right.map((n) => <a href={u(n.path)} aria-current={cur(n.path)}>{n.label}</a>)}</nav>
+      <button type="button" class="ibtn" data-open-cart aria-label="Ouvrir le panier"><Fragment set:html={cartIcon} /><span class="cart-count" data-cart-count data-n="0">0</span></button>
     </div>
   </div>
 </header>
+<div class="hdr-mini" data-hdr-mini aria-hidden="true">
+  <div class="wrap hdr-in">
+    <div class="side l">
+      <button type="button" class="ibtn burger" data-open-menu aria-label="Ouvrir le menu" tabindex="-1" set:html={burgerIcon} />
+      <nav class="mainnav">{left.map((n) => <a href={u(n.path)} tabindex="-1" aria-current={cur(n.path)}>{n.label}</a>)}</nav>
+    </div>
+    <a href={u('/')} class="sym" tabindex="-1" aria-label="Accueil"><img src={u('/images/symbole-serepi.svg')} width="56" height="30" alt="" /></a>
+    <div class="side r">
+      <nav class="mainnav">{right.map((n) => <a href={u(n.path)} tabindex="-1" aria-current={cur(n.path)}>{n.label}</a>)}</nav>
+      <button type="button" class="ibtn" data-open-cart aria-label="Ouvrir le panier" tabindex="-1"><Fragment set:html={cartIcon} /><span class="cart-count" data-cart-count data-n="0">0</span></button>
+    </div>
+  </div>
+</div>
 <nav id="mnav" class="mnav" aria-label="Menu" hidden>
   <button type="button" class="ibtn x" data-close-menu aria-label="Fermer le menu"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+  <div class="mnav-logo"><Logo width={136} link={false} /></div>
   <ul>
     <li><a href={u('/')}>Accueil</a></li>
     {NAV.map((n) => <li><a href={u(n.path)}>{n.label}</a></li>)}

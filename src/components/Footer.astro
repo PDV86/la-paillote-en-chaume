@@ -9,7 +9,7 @@ const half = Math.ceil(FOOTER_LINKS.length / 2);
   <div class="wrap">
     <div class="cols">
       <div>
-        <Logo />
+        <Logo variant="clair" width={160} />
         <p style="margin-top:16px;max-width:380px">SEREPI fournit {SITE.since} des paillotes en chaume à monter soi-même et les tuiles de chaume naturel pour renouveler toute paillote. Vente en ligne aux particuliers et aux professionnels.</p>
         <p style="margin-top:14px"><a href={`tel:${SITE.telIntl}`}>{SITE.tel}</a><br />{SITE.area}</p>
         <p class="small" style="margin-top:8px" set:html={rich(`Réponse sous ${SITE.responseTime}`)} />
