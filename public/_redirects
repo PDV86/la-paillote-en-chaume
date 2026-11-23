@@ -1,0 +1,12 @@
+# Anciennes adresses du site (pages .htm de 2009) → nouvelles pages. Source unique des redirections :
+# scripts/build-htaccess.mjs en dérive .htaccess (hébergement Apache) et postbuild.mjs des pages de renvoi.
+# Les notices PDF gardent leur adresse /pics/… : copier le dossier pics/ de l'ancien site tel quel.
+/index.htm            /                                             301
+/qualite.htm          /conseils/chaume-naturel-roseau-afrique-du-sud/ 301
+/paillotsimples.htm   /paillotes-en-chaume/                         301
+/pergolas.htm         /paillotes-en-chaume/                         301
+/santacruz.htm        /professionnels/                              301
+/realisations.htm     /realisations/                                301
+/montage.htm          /notices-de-montage/                          301
+/contact.htm          /contact/                                     301
+/tuile.htm            /tuiles-de-chaume/                            301
